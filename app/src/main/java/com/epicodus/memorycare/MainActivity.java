@@ -1,5 +1,6 @@
 package com.epicodus.memorycare;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -18,7 +19,9 @@ public class MainActivity extends AppCompatActivity {
         mFindPatientButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "Hello Elysia!", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(MainActivity.this, PatientActivity.class);
+                startActivity(intent);
+
             }
         });
     }
