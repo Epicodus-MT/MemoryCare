@@ -7,10 +7,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+//import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    public static final String TAG = MainActivity.class.getSimpleName();
+//    public static final String TAG = MainActivity.class.getSimpleName();
     private Button mFindPatientButton;
     private EditText mLocationEditText;
 
@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String location = mLocationEditText.getText().toString();
-                Log.d(TAG, location);
+//                 Log.d(TAG, location);
                 Intent intent = new Intent(MainActivity.this, PatientActivity.class);
                 startActivity(intent);
 
