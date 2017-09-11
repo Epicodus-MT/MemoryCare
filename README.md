@@ -2,63 +2,61 @@
 
 # Memory Care
 Android Independent Project
-> **Technologies Used** - TypeScript, Javascript, HTML, CSS.
-> **IDE Used** - Atom.
+> **Technologies Used** - Java
+> **IDE Used** - Android Studio
 
 #### By _**Mara Timberlake**_
 
-Application for the loved ones of a patient with Memory Loss.
-
 ## Description
+_This is an Android Application for the loved ones of a patient with Memory Loss._
 
-_This application is..._
+## Specifications
+|Behavior|Input|Output|
+|---|---|---|
+|User enters date|September 8, 2017|User sent to 'Locations Page' where the tracked locations from that date are listed|
 
-## Planning
+## Technologies Used
 
-1. Configuration/dependencies
-  *
+* [Android Studio](https://developer.android.com/studio/index.html)
+* Java
+* XML
+* Git
+* Github
 
-2. Specs
-  * Spec 1:
-  * Spec 2:
-  
-3. Integration
-  * 
-
-4. UX/UI
-  * 
-  
-5. Polish  
-  * 
-  
 ## What's included
 Within the repository you'll find the following directories and files:
 
 ```
 MemoryCare/
-├── src/
-|    └── app/
-|    |     └── about/
-|    |     └── admin/
-|    └── index.html
-|    └── main.ts
-|    └── styles.css
+├── .gradle/
+├── .idea/
+├── app/
+|    └── build/
+|    └── libs
+|    └── src/
+|    |     └── androidTest/
+|    |     └── main/
+|    |     └── test/
+|    └── .gitignore
+|    └── app.iml
+|    └── build.gradle
+|    └── proguard-rules.pro
+├── build/
+├── gradle/
 ├── .gitignore
+├── build.gradle
 └── README.md
 ```
-## Prerequisites/Installation Requirements
 
-You will need the following things properly installed on your computer.
-
-* 
-
-## Setup
+## Setup/Installation Requirements
 To run this program:
-* _LOCAL: Go to Terminal_
-* `git clone https://github.com/Epicodus-MT/angular2-team-roster.git`
-* `cd MemoryCare`
-
-## Running / Development
+  * _LOCAL: Go to Terminal_
+  * `git clone https://github.com/Epicodus-MT/MemoryCare.git`
+  * Install and open [Android Studio](https://developer.android.com/studio/index.html)
+  * Select _Open an existing Android Studio project_
+  * Navigate to cloned directory and click *OK*
+  * Create an emulator
+  * *Run* project by selecting green arrow in menu toolbar
 
 ## Known Bugs
 _No known bugs at this time._
