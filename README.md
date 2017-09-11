@@ -2,8 +2,6 @@
 
 # Memory Care
 Android Independent Project
-> **Technologies Used** - Java
-> **IDE Used** - Android Studio
 
 #### By _**Mara Timberlake**_
 
@@ -53,10 +51,10 @@ To run this program:
   * _LOCAL: Go to Terminal_
   * `git clone https://github.com/Epicodus-MT/MemoryCare.git`
   * Install and open [Android Studio](https://developer.android.com/studio/index.html)
-  * Select _Open an existing Android Studio project_
-  * Navigate to cloned directory and click *OK*
+  * Select '_Open an existing Android Studio project_'
+  * Navigate to cloned directory and click '_OK_'
   * Create an emulator
-  * *Run* project by selecting green arrow in menu toolbar
+  * _Run_ project by selecting _green arrow_ in menu toolbar
 
 ## Known Bugs
 _No known bugs at this time._
