@@ -1,3 +1,5 @@
+
+
 package com.epicodus.memorycare;
 
 import butterknife.Bind;
@@ -13,7 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 //import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     @Bind(R.id.findPatientButton) Button mFindPatientButton;
     @Bind(R.id.locationEditText) EditText mLocationEditText;
     @Bind(R.id.appNameTextView) TextView mAppNameTextView;
@@ -31,17 +33,17 @@ public class MainActivity extends AppCompatActivity {
 
 
 //        mFindPatientButton = (Button) findViewById(R.id.findPatientButton);
-        mFindPatientButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String location = mLocationEditText.getText().toString();
-//                 Log.d(TAG, location);
-                Intent intent = new Intent(MainActivity.this, PatientActivity.class);
-                intent.putExtra("location", location);
-                startActivity(intent);
+        mFindPatientButton.setOnClickListener(this);
 
-            }
-        });
+    @Override
+    public void onClick(View v) {
+        if(v == mFindPatientButton) {
+            String location = mLocationEditText.getText().toString();
+            Intent intent = new Intent(MainActivity.this, PatientActivity.class);
+            intent.putExtra("location", location);
+            startActivity(intent);
+        }
+    });
 
 
     }
