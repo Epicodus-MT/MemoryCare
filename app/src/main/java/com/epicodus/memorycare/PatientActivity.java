@@ -13,11 +13,11 @@ import android.widget.Toast;
 public class PatientActivity extends AppCompatActivity {
     private TextView mLocationTextView;
     private ListView mListView;
-    private String[] patients = new String[] {"Mi Mero Mole", "Mother's Bistro",
-            "Life of Pie", "Screen Door", "Luc Lac", "Sweet Basil",
-            "Slappy Cakes", "Equinox", "Miss Delta's", "Andina",
-            "Lardo", "Portland City Grill", "Fat Head's Brewery",
-            "Chipotle", "Subway"};
+    private String[] patients = new String[] {"The Blakely Echo Lake", "Best Care Manor",
+            "River of Life Home Care", "Summer Haven", "Gold Autumn", "The Perpetual Help",
+            "Golden Hill Adult Family Home", "Anca's Adult Family Home", "Hillwood Senior Care", "Echo Lake Adult Family Home",
+            "Happy Family", "Anderson Community", "Golden Pond Health",
+            "Alliance Care Family Home", "Creative Care"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

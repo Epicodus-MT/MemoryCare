@@ -30,7 +30,7 @@ public class PatientActivityInstrumentationTest {
     @Test
     public void listItemClickDisplaysToastWithCorrectRestaurant() {
         View activityDecorView = activityTestRule.getActivity().getWindow().getDecorView();
-        String patientName = "Mi Mero Mole";
+        String patientName = "The Blakely Echo Lake";
         onData(anything())
                 .inAdapterView(withId(R.id.listView))
                 .atPosition(0)
