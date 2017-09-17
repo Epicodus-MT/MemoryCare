@@ -11,8 +11,9 @@ _This is an Android Application for the loved ones of a patient with Memory Loss
 ## Specifications
 |Behavior|Input|Output|
 |---|---|---|
-|User enters zip code|98125|User sent to 'Locations Page' where the communities in that zip are listed|
-|User clicks on 'Care Tips'|mFindAdviceButton.setOnClickListener|User sent to 'Advice' where app general information is located|
+|User enters zip code and clicks 'Find Location'|98125|User sent to 'Locations Page' where the communities in that zip are listed|
+|User enters zip code that is not 5 digits and clicks 'Find Location'|9812|Error message displayed 'Please enter a 5-digit US zip code'|
+|User clicks 'Care Tips'|mFindAdviceButton.setOnClickListener|User sent to 'Advice' where app general information is located|
 
 ## Technologies Used
 
