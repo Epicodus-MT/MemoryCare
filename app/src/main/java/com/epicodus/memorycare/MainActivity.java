@@ -1,5 +1,3 @@
-
-
 package com.epicodus.memorycare;
 
 import butterknife.Bind;
@@ -34,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 //        mFindPatientButton = (Button) findViewById(R.id.findPatientButton);
         mFindPatientButton.setOnClickListener(this);
+    }
 
     @Override
     public void onClick(View v) {
@@ -43,8 +42,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             intent.putExtra("location", location);
             startActivity(intent);
         }
-    });
-
-
     }
 }
