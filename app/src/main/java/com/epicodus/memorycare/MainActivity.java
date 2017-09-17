@@ -30,9 +30,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mAppNameTextView.setTypeface(paprikaFont);
 
 //        mAppNameTextView = (TextView) findViewById(R.id.appNameTextView);
-
-
 //        mFindPatientButton = (Button) findViewById(R.id.findPatientButton);
+
         mFindPatientButton.setOnClickListener(this);
         mFindAdviceButton.setOnClickListener(this);
     }

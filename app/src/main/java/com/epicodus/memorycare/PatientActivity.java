@@ -17,11 +17,12 @@ public class PatientActivity extends AppCompatActivity {
     @Bind(R.id.listView) ListView mListView;
     private String[] patient = new String[] {"The Blakely Echo Lake", "Best Care Manor",
             "River of Life Home Care", "Summer Haven", "Gold Autumn", "The Perpetual Help",
-            "Golden Hill Adult Family Home", "Anca's Adult Family Home", "Hillwood Senior Care", "Echo Lake Adult Family Home",
-            "Happy Family", "Anderson Community", "Golden Pond Health",
-            "Alliance Care Family Home", "Creative Care"};
+            "Golden Hill Adult Family Home", "Anca's Adult Family Home", "Hillwood Senior Care",
+            "Echo Lake Adult Family Home"};
 
-    private String[] communities = new String[] {"Assisted Living", "Nursing Homes", "Hospice", "Leisure", "Independent Living", "Continuing Care Retirement", "Retirement Villages", "55+", "Senior Apartments", "Retirement"};
+    private String[] communities = new String[] {"Assisted Living", "Nursing Homes", "Hospice",
+            "Leisure", "Independent Living", "Continuing Care Retirement", "Retirement Villages",
+            "55+", "Senior Apartments", "Retiremesnt"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +32,7 @@ public class PatientActivity extends AppCompatActivity {
         mListView = (ListView) findViewById(R.id.listView);
         mLocationTextView = (TextView) findViewById(R.id.locationTextView);
 
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, patient);
-
-//        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, patient, communities);
+        ArrayAdapter adapter = new MyPatientArrayAdapter(this, android.R.layout.simple_list_item_1, patient, communities);
         mListView.setAdapter(adapter);
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
