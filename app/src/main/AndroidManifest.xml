@@ -22,6 +22,12 @@
                 android:value="com.epicodus.memorycare.MainActivity">
             </meta-data>
         </activity>
+        <activity android:name=".AdviceActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.epicodus.memorycare.MainActivity">
+            </meta-data>
+        </activity>
     </application>
 
 </manifest>
