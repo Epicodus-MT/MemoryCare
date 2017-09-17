@@ -11,7 +11,8 @@ _This is an Android Application for the loved ones of a patient with Memory Loss
 ## Specifications
 |Behavior|Input|Output|
 |---|---|---|
-|User enters date|September 8, 2017|User sent to 'Locations Page' where the tracked locations from that date are listed|
+|User enters zip code|98125|User sent to 'Locations Page' where the communities in that zip are listed|
+|User clicks on 'Care Tips'|mFindAdviceButton.setOnClickListener|User sent to 'Advice' where app general information is located|
 
 ## Technologies Used
 
