@@ -15,11 +15,13 @@ import android.widget.Toast;
 public class PatientActivity extends AppCompatActivity {
     @Bind(R.id.locationTextView) TextView mLocationTextView;
     @Bind(R.id.listView) ListView mListView;
-    private String[] patients = new String[] {"The Blakely Echo Lake", "Best Care Manor",
+    private String[] patient = new String[] {"The Blakely Echo Lake", "Best Care Manor",
             "River of Life Home Care", "Summer Haven", "Gold Autumn", "The Perpetual Help",
             "Golden Hill Adult Family Home", "Anca's Adult Family Home", "Hillwood Senior Care", "Echo Lake Adult Family Home",
             "Happy Family", "Anderson Community", "Golden Pond Health",
             "Alliance Care Family Home", "Creative Care"};
+
+    private String[] communities = new String[] {"Assisted Living", "Nursing Homes", "Hospice", "Leisure", "Independent Living", "Continuing Care Retirement", "Retirement Villages", "55+", "Senior Apartments", "Retirement"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +32,10 @@ public class PatientActivity extends AppCompatActivity {
         mLocationTextView = (TextView) findViewById(R.id.locationTextView);
 
 
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, patients);
+
+        MyPatientArrayAdapter adapter = new MyPatientArrayAdapter(this, android.R.layout.simple_list_item_1, patient, communities); //must match constructor!
+
+//        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, patients);
         mListView.setAdapter(adapter);
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
