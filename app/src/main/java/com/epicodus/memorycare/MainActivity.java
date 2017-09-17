@@ -1,5 +1,7 @@
 package com.epicodus.memorycare;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -12,31 +14,35 @@ import android.widget.TextView;
 //import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-//    public static final String TAG = MainActivity.class.getSimpleName();
-    private Button mFindPatientButton;
-    private EditText mLocationEditText;
-    private TextView mAppNameTextView;
+    @Bind(R.id.findPatientButton) Button mFindPatientButton;
+    @Bind(R.id.locationEditText) EditText mLocationEditText;
+    @Bind(R.id.appNameTextView) TextView mAppNameTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mLocationEditText = (EditText) findViewById(R.id.locationEditText);
-        mAppNameTextView = (TextView) findViewById(R.id.appNameTextView);
+        ButterKnife.bind(this);
 
         Typeface paprikaFont = Typeface.createFromAsset(getAssets(), "fonts/Paprika-Regular.ttf");
         mAppNameTextView.setTypeface(paprikaFont);
 
-        mFindPatientButton = (Button) findViewById(R.id.findPatientButton);
+//        mAppNameTextView = (TextView) findViewById(R.id.appNameTextView);
+
+
+//        mFindPatientButton = (Button) findViewById(R.id.findPatientButton);
         mFindPatientButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String location = mLocationEditText.getText().toString();
 //                 Log.d(TAG, location);
                 Intent intent = new Intent(MainActivity.this, PatientActivity.class);
+                intent.putExtra("location", location);
                 startActivity(intent);
 
             }
         });
+
+
     }
 }

@@ -1,5 +1,7 @@
 package com.epicodus.memorycare;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,8 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class PatientActivity extends AppCompatActivity {
-    private TextView mLocationTextView;
-    private ListView mListView;
+    @Bind(R.id.locationTextView) TextView mLocationTextView;
+    @Bind(R.id.listView) ListView mListView;
     private String[] patients = new String[] {"The Blakely Echo Lake", "Best Care Manor",
             "River of Life Home Care", "Summer Haven", "Gold Autumn", "The Perpetual Help",
             "Golden Hill Adult Family Home", "Anca's Adult Family Home", "Hillwood Senior Care", "Echo Lake Adult Family Home",
@@ -23,6 +25,7 @@ public class PatientActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patients);
+        ButterKnife.bind(this);
         mListView = (ListView) findViewById(R.id.listView);
         mLocationTextView = (TextView) findViewById(R.id.locationTextView);
 
