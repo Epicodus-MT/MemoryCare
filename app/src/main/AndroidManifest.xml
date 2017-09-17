@@ -18,10 +18,10 @@
         </activity>
         <activity android:name=".PatientActivity"
             android:theme="@style/NoActionBarTheme">
-            <!--<meta-data-->
-                <!--android:name="android.support.PARENT_ACTIVITY"-->
-                <!--android:value="com.epicodus.mypatient.MainActivity">-->
-            <!--</meta-data>-->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.epicodus.memorycare.MainActivity">
+            </meta-data>
         </activity>
     </application>
 

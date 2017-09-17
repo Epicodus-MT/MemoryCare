@@ -31,11 +31,9 @@ public class PatientActivity extends AppCompatActivity {
         mListView = (ListView) findViewById(R.id.listView);
         mLocationTextView = (TextView) findViewById(R.id.locationTextView);
 
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, patient);
 
-
-        MyPatientArrayAdapter adapter = new MyPatientArrayAdapter(this, android.R.layout.simple_list_item_1, patient, communities); //must match constructor!
-
-//        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, patients);
+//        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, patient, communities);
         mListView.setAdapter(adapter);
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -49,7 +47,7 @@ public class PatientActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String location = intent.getStringExtra("location");
-        mLocationTextView.setText("Here are all the locations near: " + location);
+        mLocationTextView.setText("Here are all the communities near: " + location);
     }
 }
 
