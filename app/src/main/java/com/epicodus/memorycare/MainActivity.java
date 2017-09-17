@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Bind(R.id.locationEditText) EditText mLocationEditText;
     @Bind(R.id.appNameTextView) TextView mAppNameTextView;
 
+    @Bind(R.id.findAdviceButton) Button mFindAdviceButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,14 +34,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 //        mFindPatientButton = (Button) findViewById(R.id.findPatientButton);
         mFindPatientButton.setOnClickListener(this);
+        mFindAdviceButton.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         if(v == mFindPatientButton) {
             String location = mLocationEditText.getText().toString();
-            Intent intent = new Intent(MainActivity.this, PatientActivity.class);
-            intent.putExtra("location", location);
+            if(mLocationEditText.getText().length()!= 5) {
+                mLocationEditText.setError("Please enter a 5-digit US zip code");
+            }
+            else {
+                Intent intent = new Intent(MainActivity.this, PatientActivity.class);
+                intent.putExtra("location", location);
+                startActivity(intent);
+            }
+        }
+        if(v == mFindAdviceButton) {
+            Intent intent = new Intent(MainActivity.this, AdviceActivity.class);
             startActivity(intent);
         }
     }

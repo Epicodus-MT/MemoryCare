@@ -18,16 +18,16 @@
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="20dp"
         android:text="MemoryCare"
         android:textAlignment="center"
         android:textColor="@color/colorTextIcons"
         android:textColorLink="@color/colorTextIcons"
         android:textSize="60sp"
         android:textStyle="bold"
-        android:id="@+id/appNameTextView"/>
+        android:id="@+id/appNameTextView"
+        android:layout_below="@+id/findAdviceButton"
+        android:layout_centerHorizontal="true" />
 
 
     <EditText
@@ -38,7 +38,7 @@
         android:layout_above="@+id/findPatientButton"
         android:layout_marginBottom="10dp"
         android:padding="5dp"
-        android:hint="Enter Date or 'Current Location'"
+        android:hint="Enter Zip Code"
         android:layout_centerHorizontal="true" />
 
     <Button
@@ -51,5 +51,17 @@
         android:text="Find Patient"
         android:textAlignment="center"
         android:textColor="@color/colorTextIcons" />
+
+    <Button
+        android:id="@+id/findAdviceButton"
+        android:layout_width="match_parent"
+        android:layout_height="35sp"
+        android:background="@color/colorPrimaryDark"
+        android:text="Care Tips"
+        android:textAlignment="center"
+        android:textColor="@color/colorTextIcons"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
 
 </RelativeLayout>
