@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -23,43 +24,24 @@ public class PatientActivity extends AppCompatActivity {
     public static final String TAG = PatientActivity.class.getSimpleName();
     @Bind(R.id.locationTextView) TextView mLocationTextView;
     @Bind(R.id.listView) ListView mListView;
-    private String[] patient = new String[] {"The Blakely Echo Lake", "Best Care Manor",
-            "River of Life Home Care", "Summer Haven", "Gold Autumn", "The Perpetual Help",
-            "Golden Hill Adult Family Home", "Anca's Adult Family Home", "Hillwood Senior Care",
-            "Echo Lake Adult Family Home"};
 
-    private String[] communities = new String[] {"Assisted Living", "Nursing Homes", "Hospice",
-            "Leisure", "Independent Living", "Continuing Care Retirement", "Retirement Villages",
-            "55+", "Senior Apartments", "Retiremesnt"};
+    public ArrayList<Patient> mPatient = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patients);
         ButterKnife.bind(this);
-//        mListView = (ListView) findViewById(R.id.listView);
-//        mLocationTextView = (TextView) findViewById(R.id.locationTextView);
-
-        ArrayAdapter adapter = new MyPatientArrayAdapter(this, android.R.layout.simple_list_item_1, patient, communities);
-        mListView.setAdapter(adapter);
-
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String patient = ((TextView)view).getText().toString();
-                Toast.makeText(PatientActivity.this, patient, Toast.LENGTH_LONG).show();
-            }
-        });
-
 
         Intent intent = getIntent();
         String location = intent.getStringExtra("location");
         mLocationTextView.setText("Here are all the communities near: " + location);
 
-        getPatient(location);
+        getPatients(location);
     }
 
-    private void getPatient(String location) {
+    private void getPatients(String location) {
         final YelpService yelpService = new YelpService();
         yelpService.findPatient(location, new Callback() {
 
@@ -70,16 +52,34 @@ public class PatientActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                try {
-                    String jsonData = response.body().string();
-                    Log.v(TAG, jsonData);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                mPatient = yelpService.processResults(response);
+
+
+                PatientActivity.this.runOnUiThread(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        String[] patientNames = new String[mPatient.size()];
+                        for (int i = 0; i < patientNames.length; i++) {
+                            patientNames[i] = mPatient.get(i).getName();
+                        }
+                        ArrayAdapter adapter = new ArrayAdapter(PatientActivity.this, android.R.layout.simple_list_item_1, patientNames);
+                        mListView.setAdapter(adapter);
+
+                        for (Patient patient : mPatient) {
+                            Log.d(TAG, "Name: " + patient.getName());
+                            Log.d(TAG, "Phone: " + patient.getPhone());
+                            Log.d(TAG, "Website: " + patient.getWebsite());
+                            Log.d(TAG, "Image url: " + patient.getImageUrl());
+                            Log.d(TAG, "Rating: " + Double.toString(patient.getRating()));
+                            Log.d(TAG, "Address: " + android.text.TextUtils.join(", ", patient.getAddress()));
+                            Log.d(TAG, "Categories: " + patient.getCategories().toString());
+                        }
+                    }
+                });
             }
         });
     }
-
 }
 
 
