@@ -7,15 +7,21 @@ package com.epicodus.memorycare;
     import okhttp3.Request;
     import se.akerfeldt.okhttp.signpost.OkHttpOAuthConsumer;
     import se.akerfeldt.okhttp.signpost.SigningInterceptor;
+    import org.json.JSONArray;
+    import org.json.JSONException;
+    import org.json.JSONObject;
+    import java.io.IOException;
+    import java.util.ArrayList;
+    import okhttp3.Response;
 
 public class YelpService {
 
     public static void findPatient(String location, Callback callback) {
-        OkHttpOAuthConsumer consumer = new OkHttpOAuthConsumer(Constants.YELP_CONSUMER_KEY, Constants.YELP_CONSUMER_SECRET);
-        consumer.setTokenWithSecret(Constants.YELP_TOKEN, Constants.YELP_TOKEN_SECRET);
+//        OkHttpOAuthConsumer consumer = new OkHttpOAuthConsumer(Constants.YELP_CONSUMER_KEY, Constants.YELP_CONSUMER_SECRET);
+//        consumer.setTokenWithSecret(Constants.YELP_TOKEN, Constants.YELP_TOKEN_SECRET);
 
         OkHttpClient client = new OkHttpClient.Builder()
-                .addInterceptor(new SigningInterceptor(consumer))
+//                .addInterceptor(new SigningInterceptor(consumer))
                 .build();
 
         HttpUrl.Builder urlBuilder = HttpUrl.parse(Constants.YELP_BASE_URL).newBuilder();
@@ -24,10 +30,55 @@ public class YelpService {
 
         Request request= new Request.Builder()
                 .url(url)
+                .addHeader("Authorization", "Bearer " + Constants.YELP_TOKEN)
                 .build();
 
         Call call = client.newCall(request);
         call.enqueue(callback);
     }
 
+    public ArrayList<Patient> processResults(Response response) {
+        ArrayList<Patient> patients = new ArrayList<>();
+
+        try {
+            String jsonData = response.body().string();
+            if (response.isSuccessful()) {
+                JSONObject yelpJSON = new JSONObject(jsonData);
+                JSONArray businessesJSON = yelpJSON.getJSONArray("businesses");
+                for (int i = 0; i < businessesJSON.length(); i++) {
+                    JSONObject restaurantJSON = businessesJSON.getJSONObject(i);
+                    String name = restaurantJSON.getString("name");
+                    String phone = restaurantJSON.optString("display_phone", "Phone not available");
+                    String website = restaurantJSON.getString("url");
+                    double rating = restaurantJSON.getDouble("rating");
+                    String imageUrl = restaurantJSON.getString("image_url");
+                    double latitude = restaurantJSON.getJSONObject("location")
+                            .getJSONObject("coordinate").getDouble("latitude");
+                    double longitude = restaurantJSON.getJSONObject("location")
+                            .getJSONObject("coordinate").getDouble("longitude");
+                    ArrayList<String> address = new ArrayList<>();
+                    JSONArray addressJSON = restaurantJSON.getJSONObject("location")
+                            .getJSONArray("display_address");
+                    for (int y = 0; y < addressJSON.length(); y++) {
+                        address.add(addressJSON.get(y).toString());
+                    }
+
+                    ArrayList<String> categories = new ArrayList<>();
+                    JSONArray categoriesJSON = restaurantJSON.getJSONArray("categories");
+
+                    for (int y = 0; y < categoriesJSON.length(); y++) {
+                        categories.add(categoriesJSON.getJSONArray(y).get(0).toString());
+                    }
+                    Patient patient = new Patient(name, phone, website, rating,
+                            imageUrl, address, latitude, longitude, categories);
+                    patients.add(patient);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return patients;
+    }
 }
