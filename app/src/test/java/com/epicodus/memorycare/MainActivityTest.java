@@ -16,6 +16,10 @@ import org.robolectric.annotation.Config;
 
 
 import android.content.Intent;
+
+import com.epicodus.memorycare.ui.MainActivity;
+import com.epicodus.memorycare.ui.PatientActivity;
+
 import org.robolectric.shadows.ShadowActivity;
 
 

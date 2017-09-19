@@ -11,23 +11,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".MainActivity"
+        <activity android:name=".ui.MainActivity"
             android:theme="@style/NoActionBarTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PatientActivity">
+        <activity android:name=".ui.PatientActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.epicodus.memorycare.MainActivity">
+                android:value="com.epicodus.memorycare.ui.MainActivity">
             </meta-data>
         </activity>
         <activity android:name=".AdviceActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.epicodus.memorycare.MainActivity">
+                android:value="com.epicodus.memorycare.ui.MainActivity">
             </meta-data>
         </activity>
     </application>

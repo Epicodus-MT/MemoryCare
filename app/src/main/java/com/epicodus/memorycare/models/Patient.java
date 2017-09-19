@@ -1,4 +1,4 @@
-package com.epicodus.memorycare;
+package com.epicodus.memorycare.models;
 
 import java.util.ArrayList;
 

@@ -7,6 +7,8 @@ package com.epicodus.memorycare;
         import android.support.test.rule.ActivityTestRule;
         import android.view.View;
 
+        import com.epicodus.memorycare.ui.PatientActivity;
+
         import org.junit.Rule;
         import org.junit.Test;
 

@@ -7,7 +7,7 @@ package com.epicodus.memorycare.MainActivityInstrumentationTest;
 
 import android.support.test.rule.ActivityTestRule;
 
-import com.epicodus.memorycare.MainActivity;
+import com.epicodus.memorycare.ui.MainActivity;
 import com.epicodus.memorycare.R;
 
 import org.junit.Rule;

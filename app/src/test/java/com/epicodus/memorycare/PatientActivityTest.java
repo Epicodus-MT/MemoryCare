@@ -7,6 +7,8 @@ package com.epicodus.memorycare;
         import android.os.Build;
         import android.widget.ListView;
 
+        import com.epicodus.memorycare.ui.PatientActivity;
+
         import org.junit.Before;
         import org.junit.Test;
         import org.junit.runner.RunWith;

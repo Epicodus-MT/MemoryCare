@@ -1,12 +1,14 @@
-package com.epicodus.memorycare;
+package com.epicodus.memorycare.services;
+
+    import com.epicodus.memorycare.Constants;
+    import com.epicodus.memorycare.models.Patient;
 
     import okhttp3.Call;
     import okhttp3.Callback;
     import okhttp3.HttpUrl;
     import okhttp3.OkHttpClient;
     import okhttp3.Request;
-    import se.akerfeldt.okhttp.signpost.OkHttpOAuthConsumer;
-    import se.akerfeldt.okhttp.signpost.SigningInterceptor;
+
     import org.json.JSONArray;
     import org.json.JSONException;
     import org.json.JSONObject;
