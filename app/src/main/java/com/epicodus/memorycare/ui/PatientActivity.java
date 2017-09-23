@@ -2,6 +2,9 @@ package com.epicodus.memorycare.ui;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.LinearLayoutManager;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
@@ -9,6 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.epicodus.memorycare.R;
+import com.epicodus.memorycare.RecyclerAdapter;
 import com.epicodus.memorycare.models.Patient;
 import com.epicodus.memorycare.services.YelpService;
 
@@ -21,10 +25,16 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
+import java.util.List;
+
 public class PatientActivity extends AppCompatActivity {
     public static final String TAG = PatientActivity.class.getSimpleName();
     @Bind(R.id.locationTextView) TextView mLocationTextView;
-    @Bind(R.id.listView) ListView mListView;
+//    @Bind(R.id.listView) ListView mListView;
+    @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager layoutManager;
+
 
     public ArrayList<Patient> mPatient = new ArrayList<>();
 
@@ -38,6 +48,16 @@ public class PatientActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String location = intent.getStringExtra("location");
         mLocationTextView.setText("Here are all the communities near: " + location);
+
+        mRecyclerView.setHasFixedSize(true);
+
+        layoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(layoutManager);
+        List<String> input = new ArrayList<>();
+        for (int i = 0; i < 100; i++) {
+            input.add("Test" + i);
+        }// define an adapter
+
 
         getPatients(location);
     }
@@ -60,12 +80,10 @@ public class PatientActivity extends AppCompatActivity {
 
                     @Override
                     public void run() {
-                        String[] patientNames = new String[mPatient.size()];
-                        for (int i = 0; i < patientNames.length; i++) {
-                            patientNames[i] = mPatient.get(i).getName();
-                        }
-                        ArrayAdapter adapter = new ArrayAdapter(PatientActivity.this, android.R.layout.simple_list_item_1, patientNames);
-                        mListView.setAdapter(adapter);
+                        mAdapter = new RecyclerAdapter(mPatient);
+                        mRecyclerView.setAdapter(mAdapter);
+//                        ArrayAdapter adapter = new ArrayAdapter(PatientActivity.this, android.R.layout.simple_list_item_1, patientNames);
+//                        mListView.setAdapter(adapter);
 
                         for (Patient patient : mPatient) {
                             Log.d(TAG, "Name: " + patient.getName());
