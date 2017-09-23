@@ -7,12 +7,10 @@ import android.support.v7.widget.LinearLayoutManager;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.epicodus.memorycare.R;
-import com.epicodus.memorycare.RecyclerAdapter;
+import com.epicodus.memorycare.adapters.RecyclerAdapter;
 import com.epicodus.memorycare.models.Patient;
 import com.epicodus.memorycare.services.YelpService;
 

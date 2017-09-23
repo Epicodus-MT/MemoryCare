@@ -1,6 +1,5 @@
-package com.epicodus.memorycare;
+package com.epicodus.memorycare.adapters;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.epicodus.memorycare.R;
 import com.epicodus.memorycare.models.Patient;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
