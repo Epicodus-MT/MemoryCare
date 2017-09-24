@@ -15,15 +15,17 @@ package com.epicodus.memorycare.services;
     import java.io.IOException;
     import java.util.ArrayList;
     import okhttp3.Response;
+    import se.akerfeldt.okhttp.signpost.OkHttpOAuthConsumer;
+    import se.akerfeldt.okhttp.signpost.SigningInterceptor;
 
 public class YelpService {
 
     public static void findPatient(String location, Callback callback) {
-//        OkHttpOAuthConsumer consumer = new OkHttpOAuthConsumer(Constants.YELP_CONSUMER_KEY, Constants.YELP_CONSUMER_SECRET);
-//        consumer.setTokenWithSecret(Constants.YELP_TOKEN, Constants.YELP_TOKEN_SECRET);
+        OkHttpOAuthConsumer consumer = new OkHttpOAuthConsumer(Constants.YELP_CONSUMER_KEY, Constants.YELP_CONSUMER_SECRET);
+        consumer.setTokenWithSecret(Constants.YELP_TOKEN, Constants.YELP_TOKEN_SECRET);
 
         OkHttpClient client = new OkHttpClient.Builder()
-//                .addInterceptor(new SigningInterceptor(consumer))
+                .addInterceptor(new SigningInterceptor(consumer))
                 .build();
 
         HttpUrl.Builder urlBuilder = HttpUrl.parse(Constants.YELP_BASE_URL).newBuilder();
@@ -32,7 +34,7 @@ public class YelpService {
 
         Request request= new Request.Builder()
                 .url(url)
-                .addHeader("Authorization", "Bearer " + Constants.YELP_TOKEN)
+//                .addHeader("Authorization", "Bearer " + Constants.YELP_TOKEN)
                 .build();
 
         Call call = client.newCall(request);
