@@ -1,4 +1,4 @@
-package com.epicodus.memorycare;
+package com.epicodus.memorycare.adapters;
 
 import android.content.Context;
 import android.widget.ArrayAdapter;
