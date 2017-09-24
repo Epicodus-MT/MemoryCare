@@ -72,7 +72,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         final Patient patient = values.get(position);
         holder.txtHeader.setText(patient.getName());
 
-        holder.txtHeader.setOnClickListener(new OnClickListener() {
+        holder.layout.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 remove(position);
