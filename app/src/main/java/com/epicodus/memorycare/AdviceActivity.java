@@ -28,9 +28,7 @@ public class AdviceActivity extends AppCompatActivity {
     }
 
     private void goToWebsite() {
-        String url = "http://www.washington.edu/boundless/nursing-smart-home/?utm_source=" +
-                "UW+News+Subscribers&utm_campaign=514a41b8d4-UW_Today_Wednesday_September_13_2017" +
-                "&utm_medium=email&utm_term=0_0707cbc3f9-514a41b8d4-308761505";
+        String url = "https://www.google.com/about/stories/bike-around/?utm_source=google&utm_medium=hpp&utm_campaign=bikearound";
         Intent i = new Intent(Intent.ACTION_VIEW);
         i.setData(Uri.parse(url));
         startActivity(i);
