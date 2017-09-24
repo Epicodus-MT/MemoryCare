@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "402214670315",
+    "firebase_url": "https://memorycare92017.firebaseio.com",
+    "project_id": "memorycare92017",
+    "storage_bucket": "memorycare92017.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:402214670315:android:56626fcef4124968",
+        "android_client_info": {
+          "package_name": "com.epicodus.memorycare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "402214670315-ln6ggld2u0r2jqtdgsjph8rou7slf1ri.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.epicodus.memorycare",
+            "certificate_hash": "b964fe55455b5da825305a1e4499726a157ad1b7"
+          }
+        },
+        {
+          "client_id": "402214670315-iearvd9a23glddnusfb8rkp36g3pt7pc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBi6MBZFfvx3VCh-0Fwj5TRRuiCCbc0u38"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "402214670315-iearvd9a23glddnusfb8rkp36g3pt7pc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
