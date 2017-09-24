@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.epicodus.memorycare.AdviceActivity;
 import com.epicodus.memorycare.R;
 //import android.widget.Toast;
 
