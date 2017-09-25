@@ -107,12 +107,12 @@ public class PatientDetailFragment extends Fragment implements View.OnClickListe
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             String uid = user.getUid();
 
-            DatabaseReference restaurantRef = FirebaseDatabase
+            DatabaseReference patientRef = FirebaseDatabase
                     .getInstance()
-                    .getReference(Constants.FIREBASE_CHILD_RESTAURANTS)
+                    .getReference(Constants.FIREBASE_CHILD_PATIENTS)
                     .child(uid);
 
-            DatabaseReference pushRef = restaurantRef.push();
+            DatabaseReference pushRef = patientRef.push();
             String pushId = pushRef.getKey();
             mPatient.setPushId(pushId);
             pushRef.setValue(mPatient);

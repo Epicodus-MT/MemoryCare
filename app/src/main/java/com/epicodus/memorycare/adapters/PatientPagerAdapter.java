@@ -13,9 +13,9 @@ import java.util.ArrayList;
 public class PatientPagerAdapter extends FragmentPagerAdapter {
     private ArrayList<Patient> mPatients;
 
-    public PatientPagerAdapter(FragmentManager fm, ArrayList<Patient> restaurants) {
+    public PatientPagerAdapter(FragmentManager fm, ArrayList<Patient> patients) {
         super(fm);
-        mPatients = restaurants;
+        mPatients = patients;
     }
 
     @Override

@@ -30,7 +30,7 @@ public class PatientActivityInstrumentationTest {
             new ActivityTestRule<>(PatientActivity.class);
 
     @Test
-    public void listItemClickDisplaysToastWithCorrectRestaurant() {
+    public void listItemClickDisplaysToastWithCorrectPatient() {
         View activityDecorView = activityTestRule.getActivity().getWindow().getDecorView();
         String patientName = "The Blakely Echo Lake";
         onData(anything())

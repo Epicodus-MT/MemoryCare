@@ -34,11 +34,11 @@ public class MainActivityInstrumentationTest {
     }
 
     @Test
-    public void locationIsSentToRestaurantsActivity() {
+    public void locationIsSentToPatientsActivity() {
         String location = "Portland";
         onView(withId(R.id.locationEditText)).perform(typeText(location));
         onView(withId(R.id.findPatientButton)).perform(click());
         onView(withId(R.id.locationTextView)).check(matches
-                (withText("Here are all the restaurants near: " + location)));
+                (withText("Here are all the services near: " + location)));
     }
 }

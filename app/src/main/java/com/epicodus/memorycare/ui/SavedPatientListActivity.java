@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 
 import com.epicodus.memorycare.Constants;
 import com.epicodus.memorycare.R;
-import com.epicodus.memorycare.adapters.FirebasePatientViewHolder;
 import com.epicodus.memorycare.models.Patient;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;

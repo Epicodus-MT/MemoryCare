@@ -56,7 +56,7 @@ public class Patient {
         return imageUrl;
     }
 
-    public ArrayList<String> getAddress() {
+    public List<String> getAddress() {
         return address;
     }
 
@@ -68,7 +68,15 @@ public class Patient {
         return longitude;
     }
 
-    public ArrayList<String> getCategories() {
+    public List<String> getCategories() {
         return categories;
+    }
+
+    public void setPushId(String pushId) {
+        this.pushId = pushId;
+    }
+
+    public String getPushId() {
+        return this.pushId;
     }
 }

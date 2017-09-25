@@ -28,7 +28,7 @@ public class PatientDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_patient_detail);
         ButterKnife.bind(this);
 
-        mPatients = Parcels.unwrap(getIntent().getParcelableExtra("services"));
+        mPatients = Parcels.unwrap(getIntent().getParcelableExtra("patients"));
 
         int startingPosition = Integer.parseInt(getIntent().getStringExtra("position"));
 

@@ -29,7 +29,7 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
     private ArrayList<Patient> mPatients = new ArrayList<>();
     private Context mContext;
 
-    public PatientListAdapter(Context context, ArrayList<Patient> patient) {
+    public PatientListAdapter(Context context, ArrayList<Patient> patients) {
         mContext = context;
         mPatients = patients;
     }
@@ -42,7 +42,7 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
     }
 
     @Override
-    public void onBindViewHolder(PatientListAdapter.RestaurantViewHolder holder, int position) {
+    public void onBindViewHolder(PatientListAdapter.PatientViewHolder holder, int position) {
         holder.bindPatient(mPatients.get(position));
     }
 
@@ -51,7 +51,7 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
         return mPatients.size();
     }
 
-    public class RestaurantViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class PatientViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @Bind(R.id.patientImageView) ImageView mPatientImageView;
         @Bind(R.id.patientNameTextView) TextView mNameTextView;
         @Bind(R.id.categoryTextView) TextView mCategoryTextView;
@@ -86,7 +86,7 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
 
             Intent intent = new Intent(mContext, PatientDetailActivity.class);
             intent.putExtra("position", itemPosition + "");
-            intent.putExtra("restaurants", Parcels.wrap(mPatients));
+            intent.putExtra("communities", Parcels.wrap(mPatients));
 
             mContext.startActivity(intent);
         }

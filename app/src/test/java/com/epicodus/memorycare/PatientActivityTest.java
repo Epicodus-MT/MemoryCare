@@ -33,7 +33,7 @@ public class PatientActivityTest {
     }
 
     @Test
-    public void restaurantListViewPopulates() {
+    public void patientListViewPopulates() {
         assertNotNull(mPatientListView.getAdapter());
         assertEquals(mPatientListView.getAdapter().getCount(), 15);
     }

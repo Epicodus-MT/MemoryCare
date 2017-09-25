@@ -93,10 +93,10 @@ public class PatientListActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void getRestaurants(String location) {
+    private void getPatients(String location) {
         final YelpService yelpService = new YelpService();
 
-        yelpService.findPatients(location, new Callback() {
+        yelpService.findPatient(location, new Callback() {
 
             @Override
             public void onFailure(Call call, IOException e) {
@@ -128,4 +128,3 @@ public class PatientListActivity extends AppCompatActivity {
     }
 
 }
-
