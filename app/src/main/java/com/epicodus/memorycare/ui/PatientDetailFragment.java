@@ -59,11 +59,13 @@ public class PatientDetailFragment extends Fragment implements View.OnClickListe
         View view = inflater.inflate(R.layout.fragment_patient_detail, container, false);
         ButterKnife.bind(this, view);
 
-        Picasso.with(view.getContext())
-                .load(mPatient.getImageUrl())
-                .resize(MAX_WIDTH, MAX_HEIGHT)
-                .centerCrop()
-                .into(mImageLabel);
+       if (!mPatient.getImageUrl().isEmpty()) {
+           Picasso.with(view.getContext())
+                   .load(mPatient.getImageUrl())
+                   .resize(MAX_WIDTH, MAX_HEIGHT)
+                   .centerCrop()
+                   .into(mImageLabel);
+       }
 
         mNameLabel.setText(mPatient.getName());
         mCategoriesLabel.setText(android.text.TextUtils.join(", ", mPatient.getCategories()));
