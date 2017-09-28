@@ -24,27 +24,6 @@ import org.parceler.Parcels;
 public class RecyclerAdapter extends RecyclerView.Adapter<FirebasePatientViewHolder> {
     private List<Patient> values;
 
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder
-//    public class ViewHolder extends RecyclerView.ViewHolder {
-//        // each data item is just a string in this case
-//        public TextView patientNameTextView;
-//        public TextView categoryTextView;
-//        public TextView ratingTextView;
-//        public ImageView imageView;
-//        public View layout;
-//
-//        public ViewHolder(View v) {
-//            super(v);
-//            layout = v;
-//            patientNameTextView = (TextView) v.findViewById(R.id.patientNameTextView);
-//            categoryTextView = (TextView) v.findViewById(R.id.categoryTextView);
-//            ratingTextView = (TextView) v.findViewById(R.id.ratingTextView);
-//            imageView = (ImageView) v.findViewById(R.id.patientImageView);
-//        }
-//    }
-
     public void add(int position, Patient item) {
         values.add(position, item);
         notifyItemInserted(position);
