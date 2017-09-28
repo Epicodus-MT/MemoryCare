@@ -108,7 +108,6 @@ public class PatientDetailFragment extends Fragment implements View.OnClickListe
         if (v == mSavePatientButton) {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             String uid = user.getUid();
-
             DatabaseReference patientRef = FirebaseDatabase
                     .getInstance()
                     .getReference(Constants.FIREBASE_CHILD_PATIENTS)
