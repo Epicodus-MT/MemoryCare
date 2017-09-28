@@ -43,7 +43,7 @@ public class SavedPatientListActivity extends AppCompatActivity {
 
     private void setUpFirebaseAdapter() {
         mFirebaseAdapter = new FirebaseRecyclerAdapter<Patient, FirebasePatientViewHolder>
-                (Patient.class, R.layout.patient_list_item, FirebasePatientViewHolder.class,
+                (Patient.class, R.layout.patient_list_item_drag, FirebasePatientViewHolder.class,
                         mPatientReference) {
 
             @Override
