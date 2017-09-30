@@ -62,19 +62,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         };
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     @Override
     public void onStart() {
         super.onStart();
@@ -115,25 +102,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(intent);
         finish();
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     @Override

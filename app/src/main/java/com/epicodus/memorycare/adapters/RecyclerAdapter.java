@@ -33,13 +33,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<FirebasePatientViewHol
         values.remove(position);
         notifyItemRemoved(position);
     }
-
-    // Provide a suitable constructor (depends on the kind of dataset)
     public RecyclerAdapter(List<Patient> myDataset) {
         values = myDataset;
     }
 
-    // Create new views (invoked by the layout manager)
     @Override
     public FirebasePatientViewHolder onCreateViewHolder(ViewGroup parent,
                                                         int viewType) {
@@ -53,11 +50,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<FirebasePatientViewHol
         return viewHolder;
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(final FirebasePatientViewHolder holder, final int position) {
-        // - get element from your dataset at this position
-        // - replace the contents of the view with that element
         final Patient patient = values.get(position);
         holder.bindPatient(patient);
 
@@ -94,7 +88,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<FirebasePatientViewHol
 //        }
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
         return values.size();
