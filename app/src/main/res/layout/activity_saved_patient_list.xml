@@ -6,7 +6,7 @@ android:layout_height="match_parent"
 tools:context=".ui.PatientListActivity">
 
 <fragment
-    android:id="@+id/fragmentRestaurantList"
+    android:id="@+id/fragmentPatientList"
     android:name="com.epicodus.memorycare.ui.CommunityListFragment"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
