@@ -22,12 +22,15 @@ import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
 
+import java.util.ArrayList;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class PatientDetailFragment extends Fragment implements View.OnClickListener {
     private static final int MAX_WIDTH = 400;
     private static final int MAX_HEIGHT = 300;
+    private static final int REQUEST_IMAGE_CAPTURE = 111;
 
     @Bind(R.id.patientImageView) ImageView mImageLabel;
     @Bind(R.id.patientNameTextView) TextView mNameLabel;
@@ -39,11 +42,26 @@ public class PatientDetailFragment extends Fragment implements View.OnClickListe
     @Bind(R.id.savePatientButton) TextView mSavePatientButton;
 
     private Patient mPatient;
+    private ArrayList<Patient> mPatients;
+    private int mPosition;
+    private String mSource;
 
     public static PatientDetailFragment newInstance(Patient patient) {
         PatientDetailFragment patientDetailFragment = new PatientDetailFragment();
         Bundle args = new Bundle();
         args.putParcelable("patient", Parcels.wrap(patient));
+        patientDetailFragment.setArguments(args);
+        return patientDetailFragment;
+    }
+
+    public static PatientDetailFragment newInstance(ArrayList<Patient> patients, Integer position, String source) {
+        PatientDetailFragment patientDetailFragment = new PatientDetailFragment();
+        Bundle args = new Bundle();
+
+        args.putParcelable(Constants.EXTRA_KEY_COMMUNITIES, Parcels.wrap(patients));
+        args.putInt(Constants.EXTRA_KEY_POSITION, position);
+        args.putString(Constants.KEY_SOURCE, source);
+
         patientDetailFragment.setArguments(args);
         return patientDetailFragment;
     }
