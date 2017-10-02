@@ -37,7 +37,6 @@ public class FirebasePatientViewHolder extends RecyclerView.ViewHolder {
 
     View mView;
     Context mContext;
-    public ImageView mPatientImageView;
 
     public FirebasePatientViewHolder(View itemView) {
         super(itemView);
@@ -51,18 +50,10 @@ public class FirebasePatientViewHolder extends RecyclerView.ViewHolder {
         TextView categoryTextView = (TextView) mView.findViewById(R.id.categoryTextView);
         TextView ratingTextView = (TextView) mView.findViewById(R.id.ratingTextView);
 
-        if (!patient.getImageUrl().isEmpty()) {
-            Picasso.with(mContext)
-                    .load(patient.getImageUrl())
-                    .resize(MAX_WIDTH, MAX_HEIGHT)
-                    .centerCrop()
-                    .into(patientImageView);
-        }
-
         if (!patient.getImageUrl().contains("http")) {
             try {
                 Bitmap imageBitmap = decodeFromFirebaseBase64(patient.getImageUrl());
-                mPatientImageView.setImageBitmap(imageBitmap);
+                patientImageView.setImageBitmap(imageBitmap);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -71,7 +62,7 @@ public class FirebasePatientViewHolder extends RecyclerView.ViewHolder {
                     .load(patient.getImageUrl())
                     .resize(MAX_WIDTH, MAX_HEIGHT)
                     .centerCrop()
-                    .into(mPatientImageView);
+                    .into(patientImageView);
         }
 
 
@@ -83,21 +74,5 @@ public class FirebasePatientViewHolder extends RecyclerView.ViewHolder {
     public static Bitmap decodeFromFirebaseBase64(String image) throws IOException {
         byte[] decodedByteArray = android.util.Base64.decode(image, Base64.DEFAULT);
         return BitmapFactory.decodeByteArray(decodedByteArray, 0, decodedByteArray.length);
-    }
-
-    @Override
-    public void onItemSelected() {
-        AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(mContext,
-                R.animator.drag_scale_on);
-        set.setTarget(itemView);
-        set.start();
-    }
-
-    @Override
-    public void onItemClear() {
-        AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(mContext,
-                R.animator.drag_scale_off);
-        set.setTarget(itemView);
-        set.start();
     }
 }

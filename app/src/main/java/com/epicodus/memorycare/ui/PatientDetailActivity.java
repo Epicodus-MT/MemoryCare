@@ -4,6 +4,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.epicodus.memorycare.Constants;
 import com.epicodus.memorycare.R;
 import com.epicodus.memorycare.adapters.PatientPagerAdapter;
 import com.epicodus.memorycare.models.Patient;
@@ -21,7 +22,6 @@ public class PatientDetailActivity extends AppCompatActivity {
     private PatientPagerAdapter adapterViewPager;
     ArrayList<Patient> mPatients = new ArrayList<>();
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,8 +31,9 @@ public class PatientDetailActivity extends AppCompatActivity {
         mPatients = Parcels.unwrap(getIntent().getParcelableExtra("patients"));
 
         int startingPosition = Integer.parseInt(getIntent().getStringExtra("position"));
+        String source = getIntent().getStringExtra(Constants.KEY_SOURCE);
 
-        adapterViewPager = new PatientPagerAdapter(getSupportFragmentManager(), mPatients);
+        adapterViewPager = new PatientPagerAdapter(getSupportFragmentManager(), mPatients, source);
         mViewPager.setAdapter(adapterViewPager);
         mViewPager.setCurrentItem(startingPosition);
     }

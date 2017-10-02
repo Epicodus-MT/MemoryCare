@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.epicodus.memorycare.Constants;
 import com.epicodus.memorycare.R;
 import com.epicodus.memorycare.models.Patient;
 import com.epicodus.memorycare.ui.AdviceActivity;
@@ -63,6 +64,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<FirebasePatientViewHol
                 Intent intent = new Intent(holder.itemView.getContext(), PatientDetailActivity.class);
                 intent.putExtra("position", itemPosition + "");
                 intent.putExtra("patients", Parcels.wrap(values));
+                intent.putExtra(Constants.KEY_SOURCE, Constants.SOURCE_FIND);
 
                 holder.itemView.getContext().startActivity(intent);
             }
@@ -92,5 +94,4 @@ public class RecyclerAdapter extends RecyclerView.Adapter<FirebasePatientViewHol
     public int getItemCount() {
         return values.size();
     }
-
 }
