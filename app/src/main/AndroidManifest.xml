@@ -3,6 +3,7 @@
     package="com.epicodus.memorycare">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
 
     <application
         android:allowBackup="true"
@@ -14,21 +15,14 @@
         <activity
             android:name=".ui.MainActivity">
         </activity>
+
         <activity android:name=".ui.PatientListActivity">
+
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.MainActivity" />
         </activity>
-        <activity android:name=".ui.PatientActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.MainActivity" />
-        </activity>
-        <activity android:name=".ui.AdviceActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.MainActivity" />
-        </activity>
+
         <activity android:name=".ui.PatientDetailActivity" />
         <activity android:name=".ui.SavedPatientListActivity" />
         <activity android:name=".ui.CreateAccountActivity" />
