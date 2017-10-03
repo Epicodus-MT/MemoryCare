@@ -44,6 +44,18 @@ public class SavedPatientListActivity extends AppCompatActivity {
                 .getReference(Constants.FIREBASE_CHILD_PATIENTS)
                 .child(uid);
 
+//        if landscape {
+//            patientDetailFragment = findViewById(R.id.patientDetailContainer);
+//
+//            Bundle args = new Bundle();
+//
+//            args.putParcelable(Constants.EXTRA_KEY_COMMUNITIES, Parcels.wrap(patients));
+//            args.putInt(Constants.EXTRA_KEY_POSITION, position);
+//            args.putString(Constants.KEY_SOURCE, source);
+//
+//            patientDetailFragment.setArguments(args);
+//        }
+
         setUpFirebaseAdapter();
     }
 
