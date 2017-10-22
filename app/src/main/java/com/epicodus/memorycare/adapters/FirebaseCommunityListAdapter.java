@@ -1,4 +1,17 @@
-Communitypublic class FirebaseCommunityListAdapter extends FirebaseRecyclerAdapter<Community, FirebaseCommunityViewHolder> implements ItemTouchHelperAdapter {
+import android.content.Context;
+import android.content.Intent;
+import android.content.res.Configuration;
+import android.support.v4.view.MotionEventCompat;
+import android.view.MotionEvent;
+import android.view.View;
+
+import com.epicodus.memorycare.Constants;
+import com.epicodus.memorycare.util.OnStartDragListener;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;Communitypublic import java.util.Collections;
+
+class FirebaseCommunityListAdapter extends FirebaseRecyclerAdapter<Community, FirebaseCommunityViewHolder> implements ItemTouchHelperAdapter {
     private DatabaseReference mRef;
     private OnStartDragListener mOnStartDragListener;
     private ChildEventListener mChildEventListener;
