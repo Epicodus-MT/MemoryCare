@@ -29,11 +29,11 @@ import java.io.ByteArrayOutputStream;
 //import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    @Bind(R.id.findPatientsButton) Button mFindPatientsButton;
+    @Bind(R.id.findCommunitiesButton) Button mFindCommunitiesButton;
     @Bind(R.id.locationEditText) EditText mLocationEditText;
     @Bind(R.id.appNameTextView) TextView mAppNameTextView;
     @Bind(R.id.findAdviceButton) Button mFindAdviceButton;
-    @Bind(R.id.savedPatientsButton) Button mSavedPatientsButton;
+    @Bind(R.id.savedCommunitiesButton) Button mSavedCommunitiesButton;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -50,9 +50,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        mAppNameTextView = (TextView) findViewById(R.id.appNameTextView);
 //        mFindPatientButton = (Button) findViewById(R.id.findPatientButton);
 
-        mFindPatientsButton.setOnClickListener(this);
+        mFindCommunitiesButton.setOnClickListener(this);
         mFindAdviceButton.setOnClickListener(this);
-        mSavedPatientsButton.setOnClickListener(this);
+        mSavedCommunitiesButton.setOnClickListener(this);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        if(v == mFindPatientsButton) {
+        if(v == mFindCommunitiesButton) {
             String location = mLocationEditText.getText().toString();
             if(mLocationEditText.getText().length()!= 5) {
                 mLocationEditText.setError("Please enter a 5-digit US zip code");
@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
         }
 
-        if (v == mSavedPatientsButton) {
+        if (v == mSavedCommunitiesButton) {
             Intent intent = new Intent(MainActivity.this, SavedPatientListActivity.class);
             startActivity(intent);
         }

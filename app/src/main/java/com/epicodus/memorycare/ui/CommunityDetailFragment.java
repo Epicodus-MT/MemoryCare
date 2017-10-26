@@ -51,15 +51,15 @@ public class PatientDetailFragment extends Fragment implements View.OnClickListe
     @Bind(R.id.savePatientButton) TextView mSavePatientButton;
 
     private Patient mPatient;
-    private ArrayList<Patient> mPatients;
+    private ArrayList<Patient> mCommunities;
     private int mPosition;
     private String mSource;
 
-    public static PatientDetailFragment newInstance(ArrayList<Patient> patients, Integer position, String source) {
+    public static PatientDetailFragment newInstance(ArrayList<Patient> communities, Integer position, String source) {
         PatientDetailFragment patientDetailFragment = new PatientDetailFragment();
         Bundle args = new Bundle();
 
-        args.putParcelable(Constants.EXTRA_KEY_COMMUNITIES, Parcels.wrap(patients));
+        args.putParcelable(Constants.EXTRA_KEY_COMMUNITIES, Parcels.wrap(communities));
         args.putInt(Constants.EXTRA_KEY_POSITION, position);
         args.putString(Constants.KEY_SOURCE, source);
 
@@ -70,9 +70,9 @@ public class PatientDetailFragment extends Fragment implements View.OnClickListe
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mPatients = Parcels.unwrap(getArguments().getParcelable(Constants.EXTRA_KEY_COMMUNITIES));
+        mCommunities = Parcels.unwrap(getArguments().getParcelable(Constants.EXTRA_KEY_COMMUNITIES));
         mPosition = getArguments().getInt(Constants.EXTRA_KEY_POSITION);
-        mPatient = mPatients.get(mPosition);
+        mPatient = mCommunities.get(mPosition);
         mSource = getArguments().getString(Constants.KEY_SOURCE);
         setHasOptionsMenu(true);
     }
@@ -168,7 +168,7 @@ public class PatientDetailFragment extends Fragment implements View.OnClickListe
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
         String imageEncoded = Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
         DatabaseReference ref = FirebaseDatabase.getInstance()
-                .getReference(Constants.FIREBASE_CHILD_PATIENTS)
+                .getReference(Constants.FIREBASE_CHILD_COMMUNITIES)
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .child(mPatient.getPushId())
                 .child("imageUrl");
@@ -203,7 +203,7 @@ public class PatientDetailFragment extends Fragment implements View.OnClickListe
             String uid = user.getUid();
             DatabaseReference patientRef = FirebaseDatabase
                     .getInstance()
-                    .getReference(Constants.FIREBASE_CHILD_PATIENTS)
+                    .getReference(Constants.FIREBASE_CHILD_COMMUNITIES)
                     .child(uid);
 
             DatabaseReference pushRef = patientRef.push();

@@ -63,7 +63,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<FirebasePatientViewHol
 
                 Intent intent = new Intent(holder.itemView.getContext(), PatientDetailActivity.class);
                 intent.putExtra("position", itemPosition + "");
-                intent.putExtra("patients", Parcels.wrap(values));
+                intent.putExtra("communities", Parcels.wrap(values));
                 intent.putExtra(Constants.KEY_SOURCE, Constants.SOURCE_FIND);
 
                 holder.itemView.getContext().startActivity(intent);

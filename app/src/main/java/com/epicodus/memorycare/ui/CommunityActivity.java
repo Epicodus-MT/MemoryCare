@@ -32,13 +32,13 @@ public class PatientActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
 
 
-    public ArrayList<Patient> mPatients = new ArrayList<>();
+    public ArrayList<Patient> mCommunities = new ArrayList<>();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_patients);
+        setContentView(R.layout.activity_communities);
         ButterKnife.bind(this);
 
         Intent intent = getIntent();
@@ -50,10 +50,10 @@ public class PatientActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
 
-        getPatients(location);
+        getCommunities(location);
     }
 
-    private void getPatients(String location) {
+    private void getCommunities(String location) {
         final YelpService yelpService = new YelpService();
         yelpService.findPatient(location, new Callback() {
 
@@ -64,17 +64,17 @@ public class PatientActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                mPatients = yelpService.processResults(response);
+                mCommunities = yelpService.processResults(response);
 
 
                 PatientActivity.this.runOnUiThread(new Runnable() {
 
                     @Override
                     public void run() {
-                        mAdapter = new RecyclerAdapter(mPatients);
+                        mAdapter = new RecyclerAdapter(mCommunities);
                         mRecyclerView.setAdapter(mAdapter);
 
-                        for (Patient patient : mPatients) {
+                        for (Patient patient : mCommunities) {
                             Log.d(TAG, "Name: " + patient.getName());
                             Log.d(TAG, "Phone: " + patient.getPhone());
                             Log.d(TAG, "Website: " + patient.getWebsite());
@@ -89,6 +89,3 @@ public class PatientActivity extends AppCompatActivity {
         });
     }
 }
-
-
-

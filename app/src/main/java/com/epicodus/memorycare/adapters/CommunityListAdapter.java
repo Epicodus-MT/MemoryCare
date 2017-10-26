@@ -26,12 +26,12 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
     private static final int MAX_WIDTH = 200;
     private static final int MAX_HEIGHT = 200;
 
-    private ArrayList<Patient> mPatients = new ArrayList<>();
+    private ArrayList<Patient> mCommunities = new ArrayList<>();
     private Context mContext;
 
-    public PatientListAdapter(Context context, ArrayList<Patient> patients) {
+    public PatientListAdapter(Context context, ArrayList<Patient> communities) {
         mContext = context;
-        mPatients = patients;
+        mCommunities = communities;
     }
 
     @Override
@@ -43,12 +43,12 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
 
     @Override
     public void onBindViewHolder(PatientListAdapter.PatientViewHolder holder, int position) {
-        holder.bindPatient(mPatients.get(position));
+        holder.bindPatient(mCommunities.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return mPatients.size();
+        return mCommunities.size();
     }
 
     public class PatientViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -86,7 +86,7 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
 
             Intent intent = new Intent(mContext, PatientDetailActivity.class);
             intent.putExtra("position", itemPosition + "");
-            intent.putExtra("communities", Parcels.wrap(mPatients));
+            intent.putExtra("communities", Parcels.wrap(mCommunities));
 
             mContext.startActivity(intent);
         }

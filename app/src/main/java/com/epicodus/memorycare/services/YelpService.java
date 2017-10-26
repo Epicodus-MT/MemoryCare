@@ -43,7 +43,7 @@ public class YelpService {
     }
 
     public ArrayList<Patient> processResults(Response response) {
-        ArrayList<Patient> patients = new ArrayList<>();
+        ArrayList<Patient> communities = new ArrayList<>();
 
         try {
             String jsonData = response.body().string();
@@ -75,7 +75,7 @@ public class YelpService {
                     }
                     Patient patient = new Patient(name, phone, website, rating,
                             imageUrl, address, latitude, longitude, categories);
-                    patients.add(patient);
+                    communities.add(patient);
                 }
             }
         } catch (IOException e) {
@@ -83,6 +83,6 @@ public class YelpService {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return patients;
+        return communities;
     }
 }

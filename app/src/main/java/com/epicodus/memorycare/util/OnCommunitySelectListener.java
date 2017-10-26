@@ -4,6 +4,6 @@ import com.epicodus.memorycare.models.Patient;
 import java.util.ArrayList;
 
 public interface OnCommunitySelectListener {
-    public void onCommunitySelected(Integer position, ArrayList<Patient> patients, String source);
+    public void onCommunitySelected(Integer position, ArrayList<Patient> communities, String source);
 
 }

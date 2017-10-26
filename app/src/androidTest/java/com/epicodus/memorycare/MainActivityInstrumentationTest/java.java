@@ -34,7 +34,7 @@ public class MainActivityInstrumentationTest {
     }
 
     @Test
-    public void locationIsSentToPatientsActivity() {
+    public void locationIsSentToCommunitiesActivity() {
         String location = "Portland";
         onView(withId(R.id.locationEditText)).perform(typeText(location));
         onView(withId(R.id.findPatientButton)).perform(click());

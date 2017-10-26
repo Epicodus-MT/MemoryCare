@@ -33,7 +33,7 @@ public class SavedPatientListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_patients);
+        setContentView(R.layout.activity_communities);
         ButterKnife.bind(this);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -41,7 +41,7 @@ public class SavedPatientListActivity extends AppCompatActivity {
 
         mPatientReference = FirebaseDatabase
                 .getInstance()
-                .getReference(Constants.FIREBASE_CHILD_PATIENTS)
+                .getReference(Constants.FIREBASE_CHILD_COMMUNITIES)
                 .child(uid);
 
 //        if landscape {
@@ -49,7 +49,7 @@ public class SavedPatientListActivity extends AppCompatActivity {
 //
 //            Bundle args = new Bundle();
 //
-//            args.putParcelable(Constants.EXTRA_KEY_COMMUNITIES, Parcels.wrap(patients));
+//            args.putParcelable(Constants.EXTRA_KEY_COMMUNITIES, Parcels.wrap(communities));
 //            args.putInt(Constants.EXTRA_KEY_POSITION, position);
 //            args.putString(Constants.KEY_SOURCE, source);
 //
@@ -75,9 +75,9 @@ public class SavedPatientListActivity extends AppCompatActivity {
 
                         Intent intent = new Intent(viewHolder.itemView.getContext(), PatientDetailActivity.class);
                         intent.putExtra("position", position + "");
-                        ArrayList<Patient> patients = new ArrayList<Patient>();
-                        patients.add(model);
-                        intent.putExtra("patients", Parcels.wrap(patients));
+                        ArrayList<Patient> communities = new ArrayList<Patient>();
+                        communities.add(model);
+                        intent.putExtra("communities", Parcels.wrap(communities));
                         intent.putExtra(Constants.KEY_SOURCE, Constants.SOURCE_SAVED);
 
                         viewHolder.itemView.getContext().startActivity(intent);

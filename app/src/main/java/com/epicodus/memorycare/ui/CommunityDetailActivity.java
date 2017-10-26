@@ -20,7 +20,7 @@ import butterknife.ButterKnife;
 public class PatientDetailActivity extends AppCompatActivity {
     @Bind(R.id.viewPager) ViewPager mViewPager;
     private PatientPagerAdapter adapterViewPager;
-    ArrayList<Patient> mPatients = new ArrayList<>();
+    ArrayList<Patient> mCommunities = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,12 +28,12 @@ public class PatientDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_patient_detail);
         ButterKnife.bind(this);
 
-        mPatients = Parcels.unwrap(getIntent().getParcelableExtra("patients"));
+        mCommunities = Parcels.unwrap(getIntent().getParcelableExtra("communities"));
 
         int startingPosition = Integer.parseInt(getIntent().getStringExtra("position"));
         String source = getIntent().getStringExtra(Constants.KEY_SOURCE);
 
-        adapterViewPager = new PatientPagerAdapter(getSupportFragmentManager(), mPatients, source);
+        adapterViewPager = new PatientPagerAdapter(getSupportFragmentManager(), mCommunities, source);
         mViewPager.setAdapter(adapterViewPager);
         mViewPager.setCurrentItem(startingPosition);
     }

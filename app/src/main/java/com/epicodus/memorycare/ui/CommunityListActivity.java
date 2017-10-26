@@ -36,24 +36,24 @@ public class PatientListActivity extends AppCompatActivity {
     @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
 
     private PatientListAdapter mAdapter;
-    public ArrayList<Patient> mPatients = new ArrayList<>();
+    public ArrayList<Patient> mCommunities = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_patients);
+        setContentView(R.layout.activity_communities);
         ButterKnife.bind(this);
 
         Intent intent = getIntent();
         String location = intent.getStringExtra("location");
 
-        getPatients(location);
+        getCommunities(location);
 
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY, null);
 
         if (mRecentAddress != null) {
-            getPatients(mRecentAddress);
+            getCommunities(mRecentAddress);
         }
     }
 
@@ -74,7 +74,7 @@ public class PatientListActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 addToSharedPreferences(query);
-                getPatients(query);
+                getCommunities(query);
                 return false;
             }
 
@@ -93,7 +93,7 @@ public class PatientListActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void getPatients(String location) {
+    private void getCommunities(String location) {
         final YelpService yelpService = new YelpService();
 
         yelpService.findPatient(location, new Callback() {
@@ -105,13 +105,13 @@ public class PatientListActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call call, Response response) {
-                mPatients = yelpService.processResults(response);
+                mCommunities = yelpService.processResults(response);
 
                 PatientListActivity.this.runOnUiThread(new Runnable() {
 
                     @Override
                     public void run() {
-                        mAdapter = new PatientListAdapter(getApplicationContext(), mPatients);
+                        mAdapter = new PatientListAdapter(getApplicationContext(), mCommunities);
                         mRecyclerView.setAdapter(mAdapter);
                         RecyclerView.LayoutManager layoutManager =
                                 new LinearLayoutManager(PatientListActivity.this);
