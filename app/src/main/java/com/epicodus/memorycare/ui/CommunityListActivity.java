@@ -15,9 +15,9 @@ import android.view.MenuItem;
 
 import com.epicodus.memorycare.Constants;
 import com.epicodus.memorycare.R;
-import com.epicodus.memorycare.adapters.PatientListAdapter;
+import com.epicodus.memorycare.adapters.CommunityListAdapter;
 import com.epicodus.memorycare.services.YelpService;
-import com.epicodus.memorycare.models.Patient;
+import com.epicodus.memorycare.models.Community;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,15 +28,15 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-public class PatientListActivity extends AppCompatActivity {
+public class CommunityListActivity extends AppCompatActivity {
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
     private String mRecentAddress;
 
     @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
 
-    private PatientListAdapter mAdapter;
-    public ArrayList<Patient> mCommunities = new ArrayList<>();
+    private CommunityListAdapter mAdapter;
+    public ArrayList<Community> mCommunities = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,7 +96,7 @@ public class PatientListActivity extends AppCompatActivity {
     private void getCommunities(String location) {
         final YelpService yelpService = new YelpService();
 
-        yelpService.findPatient(location, new Callback() {
+        yelpService.findCommunity(location, new Callback() {
 
             @Override
             public void onFailure(Call call, IOException e) {
@@ -107,14 +107,14 @@ public class PatientListActivity extends AppCompatActivity {
             public void onResponse(Call call, Response response) {
                 mCommunities = yelpService.processResults(response);
 
-                PatientListActivity.this.runOnUiThread(new Runnable() {
+                CommunityListActivity.this.runOnUiThread(new Runnable() {
 
                     @Override
                     public void run() {
-                        mAdapter = new PatientListAdapter(getApplicationContext(), mCommunities);
+                        mAdapter = new CommunityListAdapter(getApplicationContext(), mCommunities);
                         mRecyclerView.setAdapter(mAdapter);
                         RecyclerView.LayoutManager layoutManager =
-                                new LinearLayoutManager(PatientListActivity.this);
+                                new LinearLayoutManager(CommunityListActivity.this);
                         mRecyclerView.setLayoutManager(layoutManager);
                         mRecyclerView.setHasFixedSize(true);
                     }

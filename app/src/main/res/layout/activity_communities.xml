@@ -7,7 +7,7 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingTop="16dp"
-    tools:context="com.epicodus.memorycare.ui.PatientListActivity">
+    tools:context="com.epicodus.memorycare.ui.CommunityListActivity">
 
     <TextView
         android:layout_width="wrap_content"

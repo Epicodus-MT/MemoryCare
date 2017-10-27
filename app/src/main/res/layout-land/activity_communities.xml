@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"/>
 
     <FrameLayout
-        android:id="@+id/patientDetailContainer"
+        android:id="@+id/communityDetailContainer"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="6">

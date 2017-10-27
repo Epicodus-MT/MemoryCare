@@ -37,7 +37,7 @@ public class MainActivityInstrumentationTest {
     public void locationIsSentToCommunitiesActivity() {
         String location = "Portland";
         onView(withId(R.id.locationEditText)).perform(typeText(location));
-        onView(withId(R.id.findPatientButton)).perform(click());
+        onView(withId(R.id.findCommunityButton)).perform(click());
         onView(withId(R.id.locationTextView)).check(matches
                 (withText("Here are all the services near: " + location)));
     }

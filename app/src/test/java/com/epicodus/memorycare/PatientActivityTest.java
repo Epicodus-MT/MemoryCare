@@ -7,7 +7,7 @@ package com.epicodus.memorycare;
         import android.os.Build;
         import android.widget.ListView;
 
-        import com.epicodus.memorycare.ui.PatientActivity;
+        import com.epicodus.memorycare.ui.CommunityActivity;
 
         import org.junit.Before;
         import org.junit.Test;
@@ -22,20 +22,20 @@ package com.epicodus.memorycare;
 @Config(constants = BuildConfig.class, sdk = Build.VERSION_CODES.LOLLIPOP)
 @RunWith(RobolectricGradleTestRunner.class)
 
-public class PatientActivityTest {
-    private PatientActivity activity;
-    private ListView mPatientListView;
+public class CommunityActivityTest {
+    private CommunityActivity activity;
+    private ListView mCommunityListView;
 
     @Before
     public void setup() {
-        activity = Robolectric.setupActivity(PatientActivity.class);
-        mPatientListView = (ListView) activity.findViewById(R.id.listView);
+        activity = Robolectric.setupActivity(CommunityActivity.class);
+        mCommunityListView = (ListView) activity.findViewById(R.id.listView);
     }
 
     @Test
-    public void patientListViewPopulates() {
-        assertNotNull(mPatientListView.getAdapter());
-        assertEquals(mPatientListView.getAdapter().getCount(), 15);
+    public void communityListViewPopulates() {
+        assertNotNull(mCommunityListView.getAdapter());
+        assertEquals(mCommunityListView.getAdapter().getCount(), 15);
     }
 
 }

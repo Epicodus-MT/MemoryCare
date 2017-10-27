@@ -20,7 +20,7 @@ import android.widget.Toast;
 
 import com.epicodus.memorycare.Constants;
 import com.epicodus.memorycare.R;
-import com.epicodus.memorycare.models.Patient;
+import com.epicodus.memorycare.models.Community;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -36,35 +36,35 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class PatientDetailFragment extends Fragment implements View.OnClickListener {
+public class CommunityDetailFragment extends Fragment implements View.OnClickListener {
     private static final int MAX_WIDTH = 400;
     private static final int MAX_HEIGHT = 300;
     private static final int REQUEST_IMAGE_CAPTURE = 111;
 
-    @Bind(R.id.patientImageView) ImageView mImageLabel;
-    @Bind(R.id.patientNameTextView) TextView mNameLabel;
+    @Bind(R.id.communityImageView) ImageView mImageLabel;
+    @Bind(R.id.communityNameTextView) TextView mNameLabel;
     @Bind(R.id.communityTextView) TextView mCategoriesLabel;
     @Bind(R.id.ratingTextView) TextView mRatingLabel;
     @Bind(R.id.websiteTextView) TextView mWebsiteLabel;
     @Bind(R.id.phoneTextView) TextView mPhoneLabel;
     @Bind(R.id.addressTextView) TextView mAddressLabel;
-    @Bind(R.id.savePatientButton) TextView mSavePatientButton;
+    @Bind(R.id.saveCommunityButton) TextView mSaveCommunityButton;
 
-    private Patient mPatient;
-    private ArrayList<Patient> mCommunities;
+    private Community mCommunity;
+    private ArrayList<Community> mCommunities;
     private int mPosition;
     private String mSource;
 
-    public static PatientDetailFragment newInstance(ArrayList<Patient> communities, Integer position, String source) {
-        PatientDetailFragment patientDetailFragment = new PatientDetailFragment();
+    public static CommunityDetailFragment newInstance(ArrayList<Community> communities, Integer position, String source) {
+        CommunityDetailFragment communityDetailFragment = new CommunityDetailFragment();
         Bundle args = new Bundle();
 
         args.putParcelable(Constants.EXTRA_KEY_COMMUNITIES, Parcels.wrap(communities));
         args.putInt(Constants.EXTRA_KEY_POSITION, position);
         args.putString(Constants.KEY_SOURCE, source);
 
-        patientDetailFragment.setArguments(args);
-        return patientDetailFragment;
+        communityDetailFragment.setArguments(args);
+        return communityDetailFragment;
     }
 
     @Override
@@ -72,49 +72,49 @@ public class PatientDetailFragment extends Fragment implements View.OnClickListe
         super.onCreate(savedInstanceState);
         mCommunities = Parcels.unwrap(getArguments().getParcelable(Constants.EXTRA_KEY_COMMUNITIES));
         mPosition = getArguments().getInt(Constants.EXTRA_KEY_POSITION);
-        mPatient = mCommunities.get(mPosition);
+        mCommunity = mCommunities.get(mPosition);
         mSource = getArguments().getString(Constants.KEY_SOURCE);
         setHasOptionsMenu(true);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_patient_detail, container, false);
+        View view = inflater.inflate(R.layout.fragment_community_detail, container, false);
         ButterKnife.bind(this, view);
 
-        if (!mPatient.getImageUrl().contains("http")) {
+        if (!mCommunity.getImageUrl().contains("http")) {
             try {
-                Bitmap image = decodeFromFirebaseBase64(mPatient.getImageUrl());
+                Bitmap image = decodeFromFirebaseBase64(mCommunity.getImageUrl());
                 mImageLabel.setImageBitmap(image);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else {
             Picasso.with(view.getContext())
-                    .load(mPatient.getImageUrl())
+                    .load(mCommunity.getImageUrl())
                     .resize(MAX_WIDTH, MAX_HEIGHT)
                     .centerCrop()
                     .into(mImageLabel);
         }
 
         if (mSource.equals(Constants.SOURCE_SAVED)) {
-            mSavePatientButton.setVisibility(View.GONE);
+            mSaveCommunityButton.setVisibility(View.GONE);
         } else {
-            mSavePatientButton.setOnClickListener(this);
+            mSaveCommunityButton.setOnClickListener(this);
         }
 
 
-        mNameLabel.setText(mPatient.getName());
-        mCategoriesLabel.setText(android.text.TextUtils.join(", ", mPatient.getCategories()));
-        mRatingLabel.setText(Double.toString(mPatient.getRating()) + "/5");
-        mPhoneLabel.setText(mPatient.getPhone());
-        mAddressLabel.setText(android.text.TextUtils.join(", ", mPatient.getAddress()));
+        mNameLabel.setText(mCommunity.getName());
+        mCategoriesLabel.setText(android.text.TextUtils.join(", ", mCommunity.getCategories()));
+        mRatingLabel.setText(Double.toString(mCommunity.getRating()) + "/5");
+        mPhoneLabel.setText(mCommunity.getPhone());
+        mAddressLabel.setText(android.text.TextUtils.join(", ", mCommunity.getAddress()));
 
         mWebsiteLabel.setOnClickListener(this);
         mPhoneLabel.setOnClickListener(this);
         mAddressLabel.setOnClickListener(this);
 
-        mSavePatientButton.setOnClickListener(this);
+        mSaveCommunityButton.setOnClickListener(this);
 
         return view;
     }
@@ -170,7 +170,7 @@ public class PatientDetailFragment extends Fragment implements View.OnClickListe
         DatabaseReference ref = FirebaseDatabase.getInstance()
                 .getReference(Constants.FIREBASE_CHILD_COMMUNITIES)
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .child(mPatient.getPushId())
+                .child(mCommunity.getPushId())
                 .child("imageUrl");
         ref.setValue(imageEncoded);
     }
@@ -180,36 +180,36 @@ public class PatientDetailFragment extends Fragment implements View.OnClickListe
 
         if (v == mWebsiteLabel) {
             Intent webIntent = new Intent(Intent.ACTION_VIEW,
-                    Uri.parse(mPatient.getWebsite()));
+                    Uri.parse(mCommunity.getWebsite()));
             startActivity(webIntent);
         }
 
         if (v == mPhoneLabel) {
             Intent phoneIntent = new Intent(Intent.ACTION_DIAL,
-                    Uri.parse("tel:" + mPatient.getPhone()));
+                    Uri.parse("tel:" + mCommunity.getPhone()));
             startActivity(phoneIntent);
         }
 
         if (v == mAddressLabel) {
             Intent mapIntent = new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("geo:" + mPatient.getLatitude()
-                            + "," + mPatient.getLongitude()
-                            + "?q=(" + mPatient.getName() + ")"));
+                    Uri.parse("geo:" + mCommunity.getLatitude()
+                            + "," + mCommunity.getLongitude()
+                            + "?q=(" + mCommunity.getName() + ")"));
             startActivity(mapIntent);
         }
 
-        if (v == mSavePatientButton) {
+        if (v == mSaveCommunityButton) {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             String uid = user.getUid();
-            DatabaseReference patientRef = FirebaseDatabase
+            DatabaseReference communityRef = FirebaseDatabase
                     .getInstance()
                     .getReference(Constants.FIREBASE_CHILD_COMMUNITIES)
                     .child(uid);
 
-            DatabaseReference pushRef = patientRef.push();
+            DatabaseReference pushRef = communityRef.push();
             String pushId = pushRef.getKey();
-            mPatient.setPushId(pushId);
-            pushRef.setValue(mPatient);
+            mCommunity.setPushId(pushId);
+            pushRef.setValue(mCommunity);
 
             Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
         }

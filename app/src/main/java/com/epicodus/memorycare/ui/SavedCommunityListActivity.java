@@ -9,7 +9,7 @@ import android.view.View;
 
 import com.epicodus.memorycare.Constants;
 import com.epicodus.memorycare.R;
-import com.epicodus.memorycare.models.Patient;
+import com.epicodus.memorycare.models.Community;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -23,8 +23,8 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class SavedPatientListActivity extends AppCompatActivity {
-    private DatabaseReference mPatientReference;
+public class SavedCommunityListActivity extends AppCompatActivity {
+    private DatabaseReference mCommunityReference;
     private FirebaseRecyclerAdapter mFirebaseAdapter;
 
     @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
@@ -39,13 +39,13 @@ public class SavedPatientListActivity extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = user.getUid();
 
-        mPatientReference = FirebaseDatabase
+        mCommunityReference = FirebaseDatabase
                 .getInstance()
                 .getReference(Constants.FIREBASE_CHILD_COMMUNITIES)
                 .child(uid);
 
 //        if landscape {
-//            patientDetailFragment = findViewById(R.id.patientDetailContainer);
+//            communityDetailFragment = findViewById(R.id.communityDetailContainer);
 //
 //            Bundle args = new Bundle();
 //
@@ -53,29 +53,29 @@ public class SavedPatientListActivity extends AppCompatActivity {
 //            args.putInt(Constants.EXTRA_KEY_POSITION, position);
 //            args.putString(Constants.KEY_SOURCE, source);
 //
-//            patientDetailFragment.setArguments(args);
+//            communityDetailFragment.setArguments(args);
 //        }
 
         setUpFirebaseAdapter();
     }
 
     private void setUpFirebaseAdapter() {
-        mFirebaseAdapter = new FirebaseRecyclerAdapter<Patient, FirebasePatientViewHolder>
-                (Patient.class, R.layout.patient_list_item, FirebasePatientViewHolder.class,
-                        mPatientReference) {
+        mFirebaseAdapter = new FirebaseRecyclerAdapter<Community, FirebaseCommunityViewHolder>
+                (Community.class, R.layout.community_list_item, FirebaseCommunityViewHolder.class,
+                        mCommunityReference) {
 
             @Override
-            protected void populateViewHolder(final FirebasePatientViewHolder viewHolder,
-                                              final Patient model, final int position) {
-                viewHolder.bindPatient(model);
+            protected void populateViewHolder(final FirebaseCommunityViewHolder viewHolder,
+                                              final Community model, final int position) {
+                viewHolder.bindCommunity(model);
 
                 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
 
-                        Intent intent = new Intent(viewHolder.itemView.getContext(), PatientDetailActivity.class);
+                        Intent intent = new Intent(viewHolder.itemView.getContext(), CommunityDetailActivity.class);
                         intent.putExtra("position", position + "");
-                        ArrayList<Patient> communities = new ArrayList<Patient>();
+                        ArrayList<Community> communities = new ArrayList<Community>();
                         communities.add(model);
                         intent.putExtra("communities", Parcels.wrap(communities));
                         intent.putExtra(Constants.KEY_SOURCE, Constants.SOURCE_SAVED);

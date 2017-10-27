@@ -5,17 +5,17 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.epicodus.memorycare.Constants;
-import com.epicodus.memorycare.models.Patient;
-import com.epicodus.memorycare.ui.PatientDetailActivity;
-import com.epicodus.memorycare.ui.PatientDetailFragment;
+import com.epicodus.memorycare.models.Community;
+import com.epicodus.memorycare.ui.CommunityDetailActivity;
+import com.epicodus.memorycare.ui.CommunityDetailFragment;
 
 import java.util.ArrayList;
 
-public class PatientPagerAdapter extends FragmentPagerAdapter {
-    private ArrayList<Patient> mCommunities;
+public class CommunityPagerAdapter extends FragmentPagerAdapter {
+    private ArrayList<Community> mCommunities;
     private String mSource;
 
-    public PatientPagerAdapter(FragmentManager fm, ArrayList<Patient> communities, String source) {
+    public CommunityPagerAdapter(FragmentManager fm, ArrayList<Community> communities, String source) {
         super(fm);
         mCommunities = communities;
         mSource = source;
@@ -23,7 +23,7 @@ public class PatientPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return PatientDetailFragment.newInstance(mCommunities, position, mSource);
+        return CommunityDetailFragment.newInstance(mCommunities, position, mSource);
     }
 
     @Override

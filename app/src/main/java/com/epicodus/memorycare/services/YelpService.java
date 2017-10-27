@@ -1,7 +1,7 @@
 package com.epicodus.memorycare.services;
 
     import com.epicodus.memorycare.Constants;
-    import com.epicodus.memorycare.models.Patient;
+    import com.epicodus.memorycare.models.Community;
 
     import okhttp3.Call;
     import okhttp3.Callback;
@@ -20,13 +20,13 @@ package com.epicodus.memorycare.services;
 
 public class YelpService {
 
-    public static void findPatient(String location, Callback callback) {
-//        OkHttpOAuthConsumer consumer = new OkHttpOAuthConsumer(Constants.YELP_CONSUMER_KEY, Constants.YELP_CONSUMER_SECRET);
-//        consumer.setTokenWithSecret(Constants.YELP_TOKEN, Constants.YELP_TOKEN_SECRET);
+    public static void findCommunity(String location, Callback callback) {
+       OkHttpOAuthConsumer consumer = new OkHttpOAuthConsumer(Constants.YELP_CONSUMER_KEY, Constants.YELP_CONSUMER_SECRET);
+       consumer.setTokenWithSecret(Constants.YELP_TOKEN, Constants.YELP_TOKEN_SECRET);
 
         OkHttpClient client = new OkHttpClient.Builder()
-//                .addInterceptor(new SigningInterceptor(consumer))
-                .build();
+              .addInterceptor(new SigningInterceptor(consumer))
+              .build();
 
         HttpUrl.Builder urlBuilder = HttpUrl.parse(Constants.YELP_BASE_URL).newBuilder();
         urlBuilder.addQueryParameter(Constants.YELP_LOCATION_QUERY_PARAMETER, location);
@@ -35,15 +35,14 @@ public class YelpService {
 
         Request request= new Request.Builder()
                 .url(url)
-                .addHeader("Authorization", "Bearer " + Constants.YELP_TOKEN)
                 .build();
 
         Call call = client.newCall(request);
         call.enqueue(callback);
     }
 
-    public ArrayList<Patient> processResults(Response response) {
-        ArrayList<Patient> communities = new ArrayList<>();
+    public ArrayList<Community> processResults(Response response) {
+        ArrayList<Community> communities = new ArrayList<>();
 
         try {
             String jsonData = response.body().string();
@@ -51,31 +50,31 @@ public class YelpService {
                 JSONObject yelpJSON = new JSONObject(jsonData);
                 JSONArray businessesJSON = yelpJSON.getJSONArray("businesses");
                 for (int i = 0; i < businessesJSON.length(); i++) {
-                    JSONObject patientJSON = businessesJSON.getJSONObject(i);
-                    String name = patientJSON.getString("name");
-                    String phone = patientJSON.optString("display_phone", "Phone not available");
-                    String website = patientJSON.getString("url");
-                    double rating = patientJSON.getDouble("rating");
-                    String imageUrl = patientJSON.getString("image_url");
-                    JSONObject coordinates = patientJSON.getJSONObject("coordinates");
+                    JSONObject communityJSON = businessesJSON.getJSONObject(i);
+                    String name = communityJSON.getString("name");
+                    String phone = communityJSON.optString("display_phone", "Phone not available");
+                    String website = communityJSON.getString("url");
+                    double rating = communityJSON.getDouble("rating");
+                    String imageUrl = communityJSON.getString("image_url");
+                    JSONObject coordinates = communityJSON.getJSONObject("coordinates");
                     double latitude = coordinates.getDouble("latitude");
                     double longitude = coordinates.getDouble("longitude");
                     ArrayList<String> address = new ArrayList<>();
-                    JSONArray addressJSON = patientJSON.getJSONObject("location")
+                    JSONArray addressJSON = communityJSON.getJSONObject("location")
                             .getJSONArray("display_address");
                     for (int y = 0; y < addressJSON.length(); y++) {
                         address.add(addressJSON.get(y).toString());
                     }
 
                     ArrayList<String> categories = new ArrayList<>();
-                    JSONArray categoriesJSON = patientJSON.getJSONArray("categories");
+                    JSONArray categoriesJSON = communityJSON.getJSONArray("categories");
 
                     for (int y = 0; y < categoriesJSON.length(); y++) {
                         categories.add(categoriesJSON.getJSONObject(0).getString("title"));
                     }
-                    Patient patient = new Patient(name, phone, website, rating,
+                    Community community = new Community(name, phone, website, rating,
                             imageUrl, address, latitude, longitude, categories);
-                    communities.add(patient);
+                    communities.add(community);
                 }
             }
         } catch (IOException e) {

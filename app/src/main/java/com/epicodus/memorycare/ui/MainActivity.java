@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mAppNameTextView.setTypeface(paprikaFont);
 
 //        mAppNameTextView = (TextView) findViewById(R.id.appNameTextView);
-//        mFindPatientButton = (Button) findViewById(R.id.findPatientButton);
+//        mFindCommunityButton = (Button) findViewById(R.id.findCommunityButton);
 
         mFindCommunitiesButton.setOnClickListener(this);
         mFindAdviceButton.setOnClickListener(this);
@@ -121,14 +121,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
 
 
-//            if(v == mFindPatientButton) {
-//                Intent intent = new Intent(MainActivity.this, PatientListActivity.class);
+//            if(v == mFindCommunityButton) {
+//                Intent intent = new Intent(MainActivity.this, CommunityListActivity.class);
 //                startActivity(intent);
 //            }
 
 
             else {
-                Intent intent = new Intent(MainActivity.this, PatientActivity.class);
+                Intent intent = new Intent(MainActivity.this, CommunityActivity.class);
                 intent.putExtra("location", location);
                 startActivity(intent);
             }
@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         if (v == mSavedCommunitiesButton) {
-            Intent intent = new Intent(MainActivity.this, SavedPatientListActivity.class);
+            Intent intent = new Intent(MainActivity.this, SavedCommunityListActivity.class);
             startActivity(intent);
         }
     }

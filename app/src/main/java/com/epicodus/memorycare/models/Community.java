@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Parcel
-public class Patient {
+public class Community {
     String name;
     String phone;
     String website;
@@ -19,21 +19,23 @@ public class Patient {
     private String pushId;
 
     // empty constructor needed by the Parceler library:
-    public Patient() {}
+    public Community() {}
 
 
-    public Patient(String name, String phone, String website,
+    public Community(String name, String phone, String website,
                       double rating, String imageUrl, ArrayList<String> address,
                       double latitude, double longitude, ArrayList<String> categories) {
         this.name = name;
         this.phone = phone;
         this.website = website;
         this.rating = rating;
-        this.imageUrl = imageUrl;
+        this.imageUrl = getLargeImageUrl(imageUrl);
         this.address = address;
         this.latitude = latitude;
         this.latitude = longitude;
         this.categories = categories;
+        this.index = "not_specified";
+
     }
 
     public String getName() {
@@ -72,11 +74,25 @@ public class Patient {
         return categories;
     }
 
-    public void setPushId(String pushId) {
-        this.pushId = pushId;
+    public String getLargeImageUrl(String imageUrl) {
+        String largeImageUrl = imageUrl.substring(0, imageUrl.length() - 6).concat("o.jpg");
+        return largeImageUrl;
     }
 
     public String getPushId() {
         return this.pushId;
     }
+
+    public void setPushId(String pushId) {
+        this.pushId = pushId;
+    }
+
+    public String getIndex() {
+        return index;
+    }
+
+    public void setIndex(String index) {
+        this.index = index;
+    }
+
 }

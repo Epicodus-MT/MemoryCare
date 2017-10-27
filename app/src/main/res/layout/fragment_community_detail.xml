@@ -2,7 +2,7 @@
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-tools:context="com.epicodus.memorycare.ui.PatientDetailFragment">
+tools:context="com.epicodus.memorycare.ui.CommunityDetailFragment">
 
 
     <LinearLayout
@@ -14,7 +14,7 @@ tools:context="com.epicodus.memorycare.ui.PatientDetailFragment">
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="180dp"
-            android:id="@+id/patientImageView"
+            android:id="@+id/communityImageView"
             android:src="@drawable/memory"
             android:scaleType="centerCrop" />
 
@@ -31,7 +31,7 @@ tools:context="com.epicodus.memorycare.ui.PatientDetailFragment">
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Community Name"
-                android:id="@+id/patientNameTextView"
+                android:id="@+id/communityNameTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:textSize="20sp"
@@ -43,7 +43,7 @@ tools:context="com.epicodus.memorycare.ui.PatientDetailFragment">
                 android:layout_height="wrap_content"
                 android:text="4.5/5"
                 android:id="@+id/ratingTextView"
-                android:layout_alignTop="@+id/patientNameTextView"
+                android:layout_alignTop="@+id/communityNameTextView"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:textColor="@color/colorAccent"
@@ -54,7 +54,7 @@ tools:context="com.epicodus.memorycare.ui.PatientDetailFragment">
                 android:layout_height="wrap_content"
                 android:text="Assisted Living"
                 android:id="@+id/communityTextView"
-                android:layout_below="@+id/patientNameTextView"
+                android:layout_below="@+id/communityNameTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:textColor="@color/colorSecondaryText"
@@ -72,7 +72,7 @@ tools:context="com.epicodus.memorycare.ui.PatientDetailFragment">
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_above="@+id/savePatientButton"
+                android:layout_above="@+id/saveCommunityButton"
                 android:paddingLeft="30dp"
                 android:paddingTop="20dp"
                 android:paddingRight="30dp">
@@ -122,7 +122,7 @@ tools:context="com.epicodus.memorycare.ui.PatientDetailFragment">
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Save Community"
-                android:id="@+id/savePatientButton"
+                android:id="@+id/saveCommunityButton"
                 android:layout_alignParentBottom="true"
                 android:background="@color/colorAccent"
                 android:textColor="@color/colorTextIcons"

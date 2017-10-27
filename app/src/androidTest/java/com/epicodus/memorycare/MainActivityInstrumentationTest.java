@@ -7,7 +7,7 @@ package com.epicodus.memorycare;
         import android.support.test.rule.ActivityTestRule;
         import android.view.View;
 
-        import com.epicodus.memorycare.ui.PatientActivity;
+        import com.epicodus.memorycare.ui.CommunityActivity;
 
         import org.junit.Rule;
         import org.junit.Test;
@@ -23,22 +23,22 @@ package com.epicodus.memorycare;
         import static org.hamcrest.core.IsNot.not;
 
 
-public class PatientActivityInstrumentationTest {
+public class CommunityActivityInstrumentationTest {
 
     @Rule
-    public ActivityTestRule<PatientActivity> activityTestRule =
-            new ActivityTestRule<>(PatientActivity.class);
+    public ActivityTestRule<CommunityActivity> activityTestRule =
+            new ActivityTestRule<>(CommunityActivity.class);
 
     @Test
-    public void listItemClickDisplaysToastWithCorrectPatient() {
+    public void listItemClickDisplaysToastWithCorrectCommunity() {
         View activityDecorView = activityTestRule.getActivity().getWindow().getDecorView();
-        String patientName = "The Blakely Echo Lake";
+        String communityName = "The Blakely Echo Lake";
         onData(anything())
                 .inAdapterView(withId(R.id.listView))
                 .atPosition(0)
                 .perform(click());
-        onView(withText(patientName)).inRoot(withDecorView(not(activityDecorView)))
-                .check(matches(withText(patientName)));
+        onView(withText(communityName)).inRoot(withDecorView(not(activityDecorView)))
+                .check(matches(withText(communityName)));
     }
 
 }

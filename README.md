@@ -6,7 +6,7 @@ Android Independent Project
 #### By _**Mara Timberlake**_
 
 ## Description
-_This is an Android Application for the loved ones of a patient with Memory Loss._
+_This is an Android Application for the loved ones of a community with Memory Loss._
 
 ## Specifications
 |Behavior|Input|Output|
@@ -41,8 +41,8 @@ MemoryCare/
 |    |     |     |    └── AdviceActivity
 |    |     |     |    └── Constants
 |    |     |     |    └── MainActivity
-|    |     |     |    └── MyPatientArrayActivity
-|    |     |     |    └── PatientActivity
+|    |     |     |    └── MyCommunityArrayActivity
+|    |     |     |    └── CommunityActivity
 |    |     |     └── res/
 |    |     |     |    └── drawable/
 |    |     |     |    └── layout/

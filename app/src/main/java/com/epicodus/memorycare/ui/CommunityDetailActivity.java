@@ -6,8 +6,8 @@ import android.os.Bundle;
 
 import com.epicodus.memorycare.Constants;
 import com.epicodus.memorycare.R;
-import com.epicodus.memorycare.adapters.PatientPagerAdapter;
-import com.epicodus.memorycare.models.Patient;
+import com.epicodus.memorycare.adapters.CommunityPagerAdapter;
+import com.epicodus.memorycare.models.Community;
 
 import org.parceler.Parcels;
 
@@ -17,15 +17,15 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 
-public class PatientDetailActivity extends AppCompatActivity {
+public class CommunityDetailActivity extends AppCompatActivity {
     @Bind(R.id.viewPager) ViewPager mViewPager;
-    private PatientPagerAdapter adapterViewPager;
-    ArrayList<Patient> mCommunities = new ArrayList<>();
+    private CommunityPagerAdapter adapterViewPager;
+    ArrayList<Community> mCommunities = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_patient_detail);
+        setContentView(R.layout.activity_community_detail);
         ButterKnife.bind(this);
 
         mCommunities = Parcels.unwrap(getIntent().getParcelableExtra("communities"));
@@ -33,7 +33,7 @@ public class PatientDetailActivity extends AppCompatActivity {
         int startingPosition = Integer.parseInt(getIntent().getStringExtra("position"));
         String source = getIntent().getStringExtra(Constants.KEY_SOURCE);
 
-        adapterViewPager = new PatientPagerAdapter(getSupportFragmentManager(), mCommunities, source);
+        adapterViewPager = new CommunityPagerAdapter(getSupportFragmentManager(), mCommunities, source);
         mViewPager.setAdapter(adapterViewPager);
         mViewPager.setCurrentItem(startingPosition);
     }

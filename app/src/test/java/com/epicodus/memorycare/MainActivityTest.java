@@ -18,7 +18,7 @@ import org.robolectric.annotation.Config;
 import android.content.Intent;
 
 import com.epicodus.memorycare.ui.MainActivity;
-import com.epicodus.memorycare.ui.PatientActivity;
+import com.epicodus.memorycare.ui.CommunityActivity;
 
 import org.robolectric.shadows.ShadowActivity;
 
@@ -45,8 +45,8 @@ public class MainActivityTest {
 
     @Test
     public void secondActivityStarted() {
-        activity.findViewById(R.id.findPatientButton).performClick();
-        Intent expectedIntent = new Intent(activity, PatientActivity.class);
+        activity.findViewById(R.id.findCommunityButton).performClick();
+        Intent expectedIntent = new Intent(activity, CommunityActivity.class);
         ShadowActivity shadowActivity = org.robolectric.Shadows.shadowOf(activity);
         Intent actualIntent = shadowActivity.getNextStartedActivity();
         assertTrue(actualIntent.filterEquals(expectedIntent));
