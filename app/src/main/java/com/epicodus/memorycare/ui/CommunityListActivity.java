@@ -1,4 +1,4 @@
-package com.epicodus.memorycare.ui;
+Communitypackage com.epicodus.memorycare.ui;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -28,103 +28,53 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-public class CommunityListActivity extends AppCompatActivity {
-    private SharedPreferences mSharedPreferences;
-    private SharedPreferences.Editor mEditor;
-    private String mRecentAddress;
-
-    @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
-
-    private CommunityListAdapter mAdapter;
-    public ArrayList<Community> mCommunities = new ArrayList<>();
+public class CommunityListActivity extends AppCompatActivity implements OnCommunitySelectedListener {
+    private Integer mPosition;
+    ArrayList<Community> mCommunities;
+    String mSource;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_communities);
-        ButterKnife.bind(this);
 
-        Intent intent = getIntent();
-        String location = intent.getStringExtra("location");
+        if (savedInstanceState != null) {
 
-        getCommunities(location);
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                mPosition = savedInstanceState.getInt(Constants.EXTRA_KEY_POSITION);
+                mCommunities = Parcels.unwrap(savedInstanceState.getParcelable(Constants.EXTRA_KEY_COMMUNITIES));
+                mSource = savedInstanceState.getString(Constants.KEY_SOURCE);
 
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY, null);
+                if (mPosition != null && mCommunities != null) {
+                    Intent intent = new Intent(this, CommunityDetailActivity.class);
+                    intent.putExtra(Constants.EXTRA_KEY_POSITION, mPosition);
+                    intent.putExtra(Constants.EXTRA_KEY_COMMUNITIES, Parcels.wrap(mCommunities));
+                    intent.putExtra(Constants.KEY_SOURCE, mSource);
+                    startActivity(intent);
+                }
 
-        if (mRecentAddress != null) {
-            getCommunities(mRecentAddress);
+            }
+
         }
+
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_search, menu);
-        ButterKnife.bind(this);
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
 
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mEditor = mSharedPreferences.edit();
+        if (mPosition != null && mCommunities != null) {
+            outState.putInt(Constants.EXTRA_KEY_POSITION, mPosition);
+            outState.putParcelable(Constants.EXTRA_KEY_COMMUNITIES, Parcels.wrap(mCommunities));
+            outState.putString(Constants.KEY_SOURCE, mSource);
+        }
 
-        MenuItem menuItem = menu.findItem(R.id.action_search);
-        SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                addToSharedPreferences(query);
-                getCommunities(query);
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
-
-        });
-
-        return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return super.onOptionsItemSelected(item);
+    public void onCommunitySelected(Integer position, ArrayList<Community> communities, String source) {
+        mPosition = position;
+        mCommunities = communities;
+        mSource = source;
     }
-
-    private void getCommunities(String location) {
-        final YelpService yelpService = new YelpService();
-
-        yelpService.findCommunity(location, new Callback() {
-
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) {
-                mCommunities = yelpService.processResults(response);
-
-                CommunityListActivity.this.runOnUiThread(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        mAdapter = new CommunityListAdapter(getApplicationContext(), mCommunities);
-                        mRecyclerView.setAdapter(mAdapter);
-                        RecyclerView.LayoutManager layoutManager =
-                                new LinearLayoutManager(CommunityListActivity.this);
-                        mRecyclerView.setLayoutManager(layoutManager);
-                        mRecyclerView.setHasFixedSize(true);
-                    }
-                });
-            }
-        });
-    }
-
-    private void addToSharedPreferences(String location) {
-        mEditor.putString(Constants.PREFERENCES_LOCATION_KEY, location).apply();
-    }
-
 }

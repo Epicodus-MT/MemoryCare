@@ -21,6 +21,7 @@ public class CommunityDetailActivity extends AppCompatActivity {
     @Bind(R.id.viewPager) ViewPager mViewPager;
     private CommunityPagerAdapter adapterViewPager;
     ArrayList<Community> mCommunities = new ArrayList<>();
+    private String mSource;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,12 +29,11 @@ public class CommunityDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_community_detail);
         ButterKnife.bind(this);
 
-        mCommunities = Parcels.unwrap(getIntent().getParcelableExtra("communities"));
+        mCommunities = Parcels.unwrap(getIntent().getParcelableExtra(Constants.EXTRA_KEY_COMMUNITIES));
+        int startingPosition = getIntent().getIntExtra(Constants.EXTRA_KEY_POSITION, 0);
+        mSource = getIntent().getStringExtra(Constants.KEY_SOURCE);
 
-        int startingPosition = Integer.parseInt(getIntent().getStringExtra("position"));
-        String source = getIntent().getStringExtra(Constants.KEY_SOURCE);
-
-        adapterViewPager = new CommunityPagerAdapter(getSupportFragmentManager(), mCommunities, source);
+        adapterViewPager = new CommunityPagerAdapter(getSupportFragmentManager(), mCommunities, mSource);
         mViewPager.setAdapter(adapterViewPager);
         mViewPager.setCurrentItem(startingPosition);
     }
