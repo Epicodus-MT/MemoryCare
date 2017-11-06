@@ -93,7 +93,7 @@ tools:context="com.epicodus.memorycare.ui.CommunityDetailFragment">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="(503) 223-1282"
+                    android:text="(509) 993-0824"
                     android:id="@+id/phoneTextView"
                     android:drawableLeft="@drawable/ic_local_phone_white_24dp"
                     android:drawablePadding="4dp"
@@ -106,7 +106,7 @@ tools:context="com.epicodus.memorycare.ui.CommunityDetailFragment">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="123 SW Best Ever Ave. Portland, Oregon, 97222"
+                    android:text="123 54th Ave. Seattle, WA 98155"
                     android:drawableLeft="@drawable/ic_map_white_24dp"
                     android:drawablePadding="4dp"
                     android:id="@+id/addressTextView"

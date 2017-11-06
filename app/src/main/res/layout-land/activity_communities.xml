@@ -8,6 +8,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
+
+    <fragment
+        android:id="@+id/fragmentItemsList"
+        android:name="com.epicodus.memorycare.ui.CommunityListFragment"
+        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_weight="3"
+        tools:layout="@layout/fragment_community_list" />
+
     <View android:background="@color/colorAccent"
         android:layout_width="2dp"
         android:layout_height="wrap_content"/>
@@ -18,17 +27,6 @@
         android:layout_height="match_parent"
         android:layout_weight="6">
 
-        <TextView
-            android:id="@+id/locationTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="Communities near" />
     </FrameLayout>
-
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="376dp"
-        android:layout_height="match_parent"
-        android:id="@+id/recyclerView"/>
 
 </LinearLayout>
