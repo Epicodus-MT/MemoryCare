@@ -6,10 +6,17 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.epicodus.memorycare.Constants;
+import com.epicodus.memorycare.models.Community;
+import com.epicodus.memorycare.ui.CommunityDetailActivity;
+import com.epicodus.memorycare.ui.CommunityDetailFragment;
+import com.epicodus.memorycare.util.ItemTouchHelperAdapter;
 import com.epicodus.memorycare.util.OnStartDragListener;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseReference;Communitypublic import java.util.Collections;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import java.util.ArrayList;
+import java.util.Collections;
 
 class FirebaseCommunityListAdapter extends FirebaseRecyclerAdapter<Community, FirebaseCommunityViewHolder> implements ItemTouchHelperAdapter {
     private DatabaseReference mRef;
